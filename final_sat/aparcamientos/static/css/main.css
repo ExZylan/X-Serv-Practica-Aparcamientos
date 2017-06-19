@@ -1,14 +1,42 @@
 body{
-  background-color: #CEF6D8;
-  color: #0A0A2A;
+  background-color: #8CAAF7;
+  color: #36078E;
 }
 
-.header{
-  width: 100%;
-  height: 100px;
+#header{
+  background-color: #684DD2;
+  width: auto;
+  height: auto;
 }
 
-.footer{
-  text-align: center;
+#banner{
+  margin: 20px;
+  width: auto;
+  height: 150px;
+}
+#logbox{
+  color: #120A2A;
+  margin: 20px;
+  border: 2px solid red;
+}
+#navbar{
+  margin-bottom: 20px;
+}
+
+.btn:hover{
+  background-color: #36078E;
+  color: #A9D0F5;
+  border-color: #A9D0F5;
+}
+
+.btn{
+  background-color: #A9D0F5;
+  color: #36078E;
+  border-color: #36078E;
+}
+
+#footer{
+  margin-top: 70%;
+  text-align: -moz-center;
   color: #0B2161;
 }

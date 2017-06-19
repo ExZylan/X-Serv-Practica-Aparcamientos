@@ -4,28 +4,47 @@
   <head>
     <title>Aparcamientos - SAT</title>
   	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" media="screen"/>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Italian_traffic_signs_-_Parcheggio_autostradale.svg/500px-Italian_traffic_signs_-_Parcheggio_autostradale.svg.png"/>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
   </head>
 
   <body>
-    <header class="headers">
-        <img id="banner" src='{% static "images/banner.jpg" %}'/>
-      <h2>Aparcamientos para residentes en Madrid<h2>
+    <header class="navbar navbar-default navbar-fixed-top" id="header">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <img id="banner" src='{% static "images/banner.png" %}'/>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div id="logbox">
+            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede j
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <button type="button" class="btn btn-lg">Primary</button>
+          <button type="button" class="btn btn-lg">Primary</button>
+          <button type="button" class="btn btn-lg">Primary</button>
+        </div>
+        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+      </div>
     </header>
 
     <section>
 
     </section>
 
-	  <footer class="footers">
+	  <footer id="footer">
 			<p>Esta aplicación utiliza datos del portal de datos abiertos de la ciudad de Madrid</p>
       <p>
         <a href="http://datos.munimadrid.es/portal/site/egob/menuitem.ac61933d6ee3c31cae77ae7784f1a5a0/?vgnextoid=00149033f2201410VgnVCM100000171f5a0aRCRD&format=xml&file=0&filename=202584-0-aparcamientos-residentes&mgmtid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&preview=full">Fichero XML.</a>
         <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default">Descripción del fichero</a></p>
-      <p>&copy;2017, Nerea Del Olmo Sanz</p>
+      <p>&copy; 2017, Nerea Del Olmo Sanz</p>
 	  </footer>
   </body>
 
