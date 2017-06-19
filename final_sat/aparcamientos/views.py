@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from aparcamientos.models import Parking, Selected_Parking, Comments, Style_CSS
+from .models import Parking, Selected_Parking, Comments, Style_CSS
 from operator import itemgetter
 import urllib.request
 from xml.sax import make_parser
@@ -19,8 +19,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def show_index(request):
 
-    all_parkings = Parking.objects.all()
-    for parking in all_parkings:
+    parkings = Parking.objects.all()
+    for parking in parkings:
         parking.delete()
 
     theParser = make_parser()
@@ -30,4 +30,7 @@ def show_index(request):
     xmlFile = urllib.request.urlopen("http://datos.munimadrid.es/portal/site/egob/menuitem.ac61933d6ee3c31cae77ae7784f1a5a0/?vgnextoid=00149033f2201410VgnVCM100000171f5a0aRCRD&format=xml&file=0&filename=202584-0-aparcamientos-residentes&mgmtid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&preview=full")
     theParser.parse(xmlFile)
 
-    return HttpResponse ("FUNCIONA")
+    template = get_template("index.html")
+    parkings = Parking.objects.all()
+
+    return HttpResponse(template.render(Context({'listado_parkings': "FUNCIONA!!"})))
