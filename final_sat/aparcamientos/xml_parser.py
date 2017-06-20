@@ -71,7 +71,7 @@ class myContentHandler(ContentHandler):
         elif self.attribute == "NUM":
             self.direccion += ", " + self.theContent
         elif self.attribute == "CODIGO-POSTAL":
-            self.direccion += "\n CP: " + self.theContent + " MADRID"
+            self.direccion += ", CP: " + self.theContent + ", MADRID"
         # fin direccion
 
         elif self.attribute == "BARRIO":
@@ -86,9 +86,11 @@ class myContentHandler(ContentHandler):
 
         # contacto
         elif self.attribute == "TELEFONO":
-            self.contacto = self.theContent + "\n"
+            if self.theContent != "":
+                self.contacto = "Telf: " + self.theContent
         elif self.attribute == "EMAIL":
-            self.contacto += self.theContent
+            if self.theContent != "":
+                self.contacto += "  -  @: " + self.theContent
         # fin contacto
 
         if self.contacto == "":
