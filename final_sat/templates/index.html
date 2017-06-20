@@ -1,42 +1,88 @@
 {% load staticfiles %}
+<!--PÁGINA PRINCIPAL && PLANTILLA BASE-->
 <!DOCTYPE html>
 <html>
   <head>
     <title>Aparcamientos - SAT</title>
   	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" media="screen"/>
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}"/>
   </head>
 
   <body>
-    <header class="navbar navbar-default navbar-fixed-top" id="header">
+    <header class="navbar navbar-fixed-top" id="header">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <img id="banner" src='{% static "images/banner.png" %}'/>
+          <img id="banner" src='{% static "images/banner2.jpg" %}'/>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
         </div>
+
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div id="logbox">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede j
+            {% if user.is_authenticated %}
+              <div>
+                <form id="login_form" action="/logout/" method ="POST">
+                  <div class="form-group has-success has-feedback">
+                    {% csrf_token %}
+                    <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                      <span class="form-control">{{user.username}}</span>
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                    <span class="sr-only">(success)</span>
+                  </div>
+                  <button type="submit" class="btn btn-log">Salir</button>
+              </div>
+            {% else %}
+              <form id="login_form" action="/login/" method ="POST">
+                <div class="form-group has-success has-feedback">
+                  {% csrf_token %}
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input id="username" type="text" class="form-control" name="username" value="usuario">
+                  </div>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span class="sr-only">(success)</span>
+                </div>
+                <div class="form-group has-success has-feedback">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                    <input id="password" type="password" class="form-control" name="password" value="contraseña">
+                  </div>
+                  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                  <span class="sr-only">(success)</span>
+                </div>
+                <button type="submit" class="btn btn-log">Entrar</button>
+              </form>
+              {% if form.errors %}
+                <p class="alert alert-danger">Usuario o contraseña incorrectos.</p>
+              {% endif %}
+
+            {% endif %}
+          </div><!-- /LOGBOX-->
+        </div>
+
+      </div> <!-- /ROW -->
+      <div class="row">
+        <div id="navbar">
+          <div class="btn-group">
+            <a type="button" class="btn btn-lg" href="/">Inicio</a>
+            <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
+            <a type="button" class="btn btn-lg" href="/about">About</a>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-          <button type="button" class="btn btn-lg">Primary</button>
-          <button type="button" class="btn btn-lg">Primary</button>
-          <button type="button" class="btn btn-lg">Primary</button>
-        </div>
-        <div id="navbar" class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-      </div>
     </header>
 
+    <section id="title">
+      <h1>{%block title %}{% endblock title %}</h1>
+    </section>
     <section>
-
+      <div>{%block content %}{% endblock content%}</div>
     </section>
 
 	  <footer id="footer">

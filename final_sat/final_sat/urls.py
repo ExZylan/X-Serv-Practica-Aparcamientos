@@ -23,5 +23,10 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', 'aparcamientos.views.show_index',),
+    url(r'^login/$', 'aparcamientos.views.log_in',),
+    url(r'^logout/$', 'aparcamientos.views.log_out',),
+    url(r'^aparcamientos/$', 'aparcamientos.views.aparcamientos',),
+    url(r'^aparcamientos/(?P<id>\d+)$', 'aparcamientos.views.aparcamientos_id',),
+    url(r'^about/$', 'aparcamientos.views.about',),
     url(r'^admin/', include(admin.site.urls)),
 ]

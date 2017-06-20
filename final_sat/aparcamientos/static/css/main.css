@@ -2,41 +2,77 @@ body{
   background-color: #8CAAF7;
   color: #36078E;
 }
-
-#header{
-  background-color: #684DD2;
-  width: auto;
-  height: auto;
-}
-
 #banner{
-  margin: 20px;
-  width: auto;
-  height: 150px;
+  width: 100vw;
+  height: 280px;
 }
 #logbox{
-  color: #120A2A;
   margin: 20px;
-  border: 2px solid red;
 }
-#navbar{
-  margin-bottom: 20px;
+.has-success .input-group-addon {
+  color: #9edbfa;
+  background-color: black;
+  border-color: #0D7AF9;
+}
+.has-success .form-control {
+  border-color: #0D7AF9;
+  background-color: #dceaf1;
+}
+.has-success .form-control:focus {
+  border-color: #0D7AF9;
+  background-color:  #f8f8f8;
+}
+.has-success .form-control-feedback {
+  color: #0D7AF9;
 }
 
-.btn:hover{
-  background-color: #36078E;
-  color: #A9D0F5;
-  border-color: #A9D0F5;
+#title h1{
+  margin: 370px 0 20px 0;
+  text-align: center;
+  text-decoration: underline;
+  text-shadow: 1px 1px #fed711;
+  font-weight: 900;
+  font-style: italic;
+  font-variant: small-caps;
 }
 
+/* BOTONES*/
 .btn{
-  background-color: #A9D0F5;
+  background-color: #684DD2;
   color: #36078E;
   border-color: #36078E;
+  width: 33.1%;
+}
+.btn:hover{
+  background-color: #36078E;
+  border-color: #A9D0F5;
+  color: #A9D0F5;
+}
+.btn-group, .btn-group-vertical {
+  width: 100%;
 }
 
+.btn-log{
+  background-color: #DCEAF1;
+  color: black;
+  border-color: #0D7AF9;
+  width: 100%;
+}
+.btn-log:hover{
+  background-color: #9edbfa;
+  color: black;
+  border-color: black;
+}
+/* FIN BOTONES*/
+
+th, td{
+  text-align: center;
+}
+
+
+
 #footer{
-  margin-top: 70%;
+  margin-top: 10%;
   text-align: -moz-center;
   color: #0B2161;
 }

@@ -1,0 +1,31 @@
+<!--Caja de log in / log out-->
+{% extends "index.html" %}
+
+
+{% block title %}
+Aparcamiento seleccionado
+{% endblock title %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h3><a href="{{parking.url}}">{{parking.nombre}}</a></h3>
+      <p>{{parking.direccion}}</p>
+      <p>{{parking.barrio}}</p>
+      <p>{{parking.distrito}}</p>
+      <p>Coordenadas:
+        <ul>
+          <li>Latitud: {{parking.latitud}}</li>
+          <li>Longitud: {{parking.longitud}}</li>
+        </ul>
+      </p>
+      <p>Descripción: {{parking.descripcion}}</p>
+      {% if parking.accesibilidad == 1 %}
+        <p>Accesible: Sí</p>
+      {% else %}
+        <p>Accesible: No</p>
+      {% endif %}
+      <p>Contacto: {{parking.contacto}}</p>
+    </div>
+  </div>
+{% endblock content %}
