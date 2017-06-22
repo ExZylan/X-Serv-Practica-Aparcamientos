@@ -26,3 +26,4 @@ class Users_Page(models.Model):
     color = models.CharField(max_length=256, null=True)
     background = models.CharField(max_length=256, null=True)
     font_size = models.IntegerField(null=True)
+    

@@ -50,10 +50,6 @@ Listado completo de aparcamientos
               </div>
             </div>
           </th>
-
-
-
-
           <th>Comentarios</th>
           <th>Likes</th>
           {% if user.is_authenticated %}
@@ -68,14 +64,18 @@ Listado completo de aparcamientos
             <td>{{parking.direccion}}</td>
             <td>{{parking.barrio}}</td>
             <td>{{parking.distrito}}</td>
-            <td><a href="/aparcamientos/{{parking.id_entidad}}"> + Info</a></td>
+            <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
             <td>{{parking.likes}}
-              <a href="/sumar_like/{{parking.id_entidad}}">
-                <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+              <a href="/sumar_like/{{parking.id_entidad}}/">
+                <i class="like fa fa-thumbs-o-up" aria-hidden="true"></i>
               </a>
             </td>
             {% if user.is_authenticated %}
-              <td><i class="fa fa-heart" aria-hidden="true"></i><i class="fa fa-heart-o" aria-hidden="true"></i></td>
+            <td>
+              <a href="/favoritos/{{parking.id_entidad}}/">
+                <i class="favourite fa fa-heart-o" aria-hidden="true"></i>
+              </a>
+            </td>
             {% endif %}
           </tr>
         {% endfor %}

@@ -103,6 +103,29 @@ def sumar_like(request, id_parking):
     return render_to_response('aparcamientos.html', context)
 
 
+def favoritos(request, id_parking):
+    parking = Parking.objects.get(id_entidad=id_parking)
+    parking.likes += 1
+    parking.save()
+
+    context = {}
+    context['user'] = request.user
+    context['users_list'] = Users_Page.objects.all()
+    global accesibilidad_on
+    if accesibilidad_on:
+        global filtro_dist
+        if filtro_dist != "":
+            context['parkings'] = Parking.objects.filter(accesibilidad=1).filter(distrito=filtro_dist)
+        else:
+            context['parkings'] = Parking.objects.filter(accesibilidad=1)
+    else:
+        if filtro_dist != "":
+            context['parkings'] = Parking.objects.filter(distrito=filtro_dist)
+        else:
+            context['parkings'] = Parking.objects.all()
+    return render_to_response('aparcamientos.html', context)
+
+
 def aparcamientos_id(request,id_parking):
     context = {}
     context['user'] = request.user

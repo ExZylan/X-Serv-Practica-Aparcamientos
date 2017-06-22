@@ -5,11 +5,15 @@ body{
 	padding: 4em 0 2em 0;
 	background-size: 128px 128px, 100% 100%, auto;
 	background-repeat: repeat, no-repeat, no-repeat;
+  font-family: 'Imprima', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
 }
+
 
 #banner{
   width: 100vw;
-  height: 280px;
+  height: 220px;
 }
 #logbox{
   margin: 20px;
@@ -34,13 +38,9 @@ body{
 }
 
 #title h1{
-  margin: 370px 0 20px 0;
+  margin: 250px 0 30px 0;
   text-align: center;
-  text-decoration: underline;
-  text-shadow: 1px 1px #98d5ef;
-  font-weight: 900;
-  font-style: italic;
-  font-variant: small-caps;
+  font-family: 'Bungee Inline', cursive;
 }
 
 /* MENU DESPLEGABLE */
@@ -83,6 +83,8 @@ body{
 
 /* BOTONES*/
 .btn{
+  font-weight: 600;
+  font-size: 15px;
   color: #040E4C;
   background-color: #17AAA5;
   border-color: #36078E;
@@ -132,12 +134,13 @@ a:hover {
   overflow-y: scroll;
 }
 #users_title{
-  height: 37px;
+  height: 38px;
   width: 100%;
   background-color: #17AAA5;
   text-align: center;
   border-bottom: 1px solid #040E4C;
-  padding-top: 2px;
+  padding-top: 8px;
+  font-size: 18px;
 }
 .user_page{
   padding: 8px;
@@ -164,6 +167,7 @@ a:hover {
 .table > thead > tr > th,
 .table > tbody > tr > td{
   border-bottom: 1px solid #040E4C;
+  font-size: 18px;
 }
 .table > tbody > tr:hover {
   background-color: #DFA85E;
@@ -172,6 +176,29 @@ a:hover {
 th, td{
   text-align: center;
 }
+
+.like{
+  font-size: 18px;
+}
+.favourite{
+  font-size: 18px;
+}
+
+/** CAJA ABOUT **/
+.about_box {
+  font-family: 'Salsa', cursive;
+  font-size: 18px;
+  font-weight: 100;
+  text-align: center;
+  background: #eaecd3;
+  margin: 0 0 25px;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 35px 0px 35px 0px;
+  -moz-border-radius: 35px 0px 35px 0px;
+  border: 1px solid #040E4C;
+}
+/** FIN CAJA ABOUT **/
 
 
 #footer_container{
