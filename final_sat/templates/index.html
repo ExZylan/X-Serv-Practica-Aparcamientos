@@ -17,10 +17,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <img id="banner" src='{% static "images/banner2.jpg" %}'/>
         </div>
-
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        </div>
-
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <div id="logbox">
             {% if user.is_authenticated %}
@@ -65,32 +62,69 @@
             {% endif %}
           </div><!-- /LOGBOX-->
         </div>
-
       </div> <!-- /ROW -->
       <div class="row">
         <div id="navbar">
           <div class="btn-group">
-            <a type="button" class="btn btn-lg" href="/">Inicio</a>
-            <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
-            <a type="button" class="btn btn-lg" href="/about">About</a>
+            {% block navbar %}
+              <a type="button" class="btn btn-lg btn-index" href="/aparcamientos">Todos</a>
+              <a type="button" class="btn btn-lg btn-index" href="/about">About</a>
+            {% endblock navbar %}
           </div>
         </div>
       </div>
     </header>
 
+
     <section id="title">
-      <h1>{%block title %}{% endblock title %}</h1>
+      <h1>
+        {% block title %}
+        INICIO
+        {% endblock title %}
+      </h1>
     </section>
-    <section>
-      <div>{%block content %}{% endblock content%}</div>
+
+    <section id="info">
+      <div id="users_list" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <div id="users_title"><h4>Usuarios registrados</h4></div>
+        {% for usuario_pagina in users_list %}
+          <div class="user_page"><a href="/{{usuario_pagina.usuario}}/">
+            <section>{{usuario_pagina.usuario}}</section>
+            <section>{{usuario_pagina.titulo}}</section>
+          </a></div>
+        {% endfor %}
+      </div>
+
+
+      <main id="main_content" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+        {% block content %}
+          {% if parkings_loaded %}
+            {% if accesibilidad_on %}
+              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver lista completa de aparcamientos</a>
+            {% else %}
+              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver sólo aparcamientos accesibles</a>
+            {% endif %}
+          {% else %}
+            {% if error_loading %}
+              <div class="alert alert-danger">
+                <strong>Error:</strong> Para cargar los aparcamientos debes estar registrado.
+              </div>
+            {% endif %}
+            <a type="button" class="btn btn-accesible" href="/cargar_aparcamientos/">Cargar listado de aparcamientos</a>
+          {% endif %}
+
+        {% endblock content %}
+      </main>
     </section>
 
 	  <footer id="footer">
-			<p>Esta aplicación utiliza datos del portal de datos abiertos de la ciudad de Madrid</p>
-      <p>
-        <a href="http://datos.munimadrid.es/portal/site/egob/menuitem.ac61933d6ee3c31cae77ae7784f1a5a0/?vgnextoid=00149033f2201410VgnVCM100000171f5a0aRCRD&format=xml&file=0&filename=202584-0-aparcamientos-residentes&mgmtid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&preview=full">Fichero XML.</a>
-        <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default">Descripción del fichero</a></p>
-      <p>&copy; 2017, Nerea Del Olmo Sanz</p>
+      <div class="container" id="footer_container">
+    		<p>Esta aplicación utiliza datos del portal de datos abiertos de la ciudad de Madrid</p>
+        <p>
+          <a id="ficheros" href="http://datos.munimadrid.es/portal/site/egob/menuitem.ac61933d6ee3c31cae77ae7784f1a5a0/?vgnextoid=00149033f2201410VgnVCM100000171f5a0aRCRD&format=xml&file=0&filename=202584-0-aparcamientos-residentes&mgmtid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&preview=full">Fichero XML&nbsp;&nbsp;</a>
+          <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default">&nbsp;Descripción del fichero</a></p>
+        <p>&copy; 2017, Nerea Del Olmo Sanz</p>
+      </div>
 	  </footer>
   </body>
 

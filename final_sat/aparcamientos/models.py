@@ -16,18 +16,13 @@ class Parking(models.Model):
     latitud = models.CharField(max_length=256)
     longitud = models.CharField(max_length=512)
     contacto = models.TextField(max_length=256, default="NO HAY DATOS")
+    likes = models.IntegerField(default=0)
+    n_comentarios = models.IntegerField(default=0)
 
 
-class Selected_Parking(models.Model):
-    id_entidad = models.ForeignKey(Parking)
-    usuario = models.ForeignKey(User, default="")
-    fecha = models.DateField(auto_now_add=True)
-
-
-class Comments(models.Model):
-    id_entidad = models.ForeignKey(Parking)
-    comentario = models.TextField()
-
-class Style_CSS(models.Model):
-    usuario = models.ForeignKey(User, default="")
-    titulo = models.CharField(max_length=256)
+class Users_Page(models.Model):
+    usuario = models.OneToOneField(User, related_name="usuario")
+    titulo = models.TextField(max_length=256, null=True)
+    color = models.CharField(max_length=256, null=True)
+    background = models.CharField(max_length=256, null=True)
+    font_size = models.IntegerField(null=True)

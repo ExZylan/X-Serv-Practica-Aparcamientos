@@ -27,6 +27,13 @@ urlpatterns = [
     url(r'^logout/$', 'aparcamientos.views.log_out',),
     url(r'^aparcamientos/$', 'aparcamientos.views.aparcamientos',),
     url(r'^aparcamientos/(?P<id>\d+)$', 'aparcamientos.views.aparcamientos_id',),
+    url(r'^accesibilidad/$', 'aparcamientos.views.accesibilidad',),
+    url(r'^cargar_aparcamientos/$', 'aparcamientos.views.cargar_aparcamientos',),
+    url(r'^cambiar_titulo/$', 'aparcamientos.views.cambiar_titulo',),
+    url(r'^filtrar_distrito/(?P<dist>\S+)/$', 'aparcamientos.views.filtrar_distrito',),
     url(r'^about/$', 'aparcamientos.views.about',),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^(?P<usuario_pag>\w+)/$', 'aparcamientos.views.pagina_usuario',),
+    url(r'^(?P<usuario_pag>\w+)/xml/$', 'aparcamientos.views.canal_xml',),
+
 ]

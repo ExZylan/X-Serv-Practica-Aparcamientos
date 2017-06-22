@@ -1,10 +1,18 @@
-<!--Caja de log in / log out-->
+<!--Información de la página web-->
 {% extends "index.html" %}
 
 
+{% block navbar %}
+  <a type="button" class="btn btn-lg" href="/">Inicio</a>
+  <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
+  <a type="button" class="btn btn-lg" href="/about">About</a>
+{% endblock navbar %}
+
+
 {% block title %}
-Información sobre esta página
+  Información sobre esta página
 {% endblock title %}
+
 
 {% block content %}
   <div class="row">

@@ -1,0 +1,29 @@
+<!--Página de ususario-->
+{% extends "index.html" %}
+
+
+{% block navbar %}
+  <a type="button" class="btn btn-lg" href="/">Inicio</a>
+  <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
+  <a type="button" class="btn btn-lg" href="/about">About</a>
+{% endblock navbar %}
+
+
+{% block title %}
+Página personal de usuario
+{% endblock title %}
+
+
+{% block content %}
+  <h3>{{usuario_pagina.titulo}}</h3>
+  {% if user.is_authenticated %}
+    {% if pagina_propia %}
+      <form id="cambiar_titulo" action="/cambiar_titulo/" method ="POST">
+        {% csrf_token %}
+        Título de página:
+        <input id="titulo" type="text" name="titulo">
+        <input id="cambiar_titulo" type="submit" value="Cambiar título">
+      </form>
+    {% endif %}
+  {% endif %}
+{% endblock content %}

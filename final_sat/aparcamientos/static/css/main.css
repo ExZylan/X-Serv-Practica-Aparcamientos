@@ -1,7 +1,12 @@
 body{
-  background-color: #8CAAF7;
-  color: #36078E;
+  color: #040E4C;
+  background-image: url("images/overlay.png"), url("images/body.svg"), -moz-linear-gradient(75deg, #8B8E8D 15%, #8FE7D5 55%);
+	position: relative;
+	padding: 4em 0 2em 0;
+	background-size: 128px 128px, 100% 100%, auto;
+	background-repeat: repeat, no-repeat, no-repeat;
 }
+
 #banner{
   width: 100vw;
   height: 280px;
@@ -30,25 +35,68 @@ body{
   margin: 370px 0 20px 0;
   text-align: center;
   text-decoration: underline;
-  text-shadow: 1px 1px #fed711;
+  text-shadow: 1px 1px #98d5ef;
   font-weight: 900;
   font-style: italic;
   font-variant: small-caps;
 }
 
+/* MENU DESPLEGABLE */
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #DFA85E;
+  min-width: 160px;
+  height: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  overflow-y: scroll;
+}
+.dropdown-content a {
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-content a:hover {
+  background-color: #F9D9AA;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.dropdown:hover .dropbtn {
+  background-color: #DFA85E;
+}
+/* FIN MENU DESPLEGABLE */
+
+
+
 /* BOTONES*/
 .btn{
-  background-color: #684DD2;
-  color: #36078E;
+  color: #040E4C;
+  background-color: #17AAA5;
   border-color: #36078E;
   width: 33.1%;
 }
 .btn:hover{
-  background-color: #36078E;
-  border-color: #A9D0F5;
-  color: #A9D0F5;
+  background-color: #DFA85E;
+}
+.btn-index{
+  width: 50%;
 }
 .btn-group, .btn-group-vertical {
+  width: 100%;
+}
+
+.btn-accesible{
   width: 100%;
 }
 
@@ -65,14 +113,72 @@ body{
 }
 /* FIN BOTONES*/
 
+a,
+a:hover {
+  color: #040E4C;
+}
+
+
+
+#info{
+  padding-left: 10px;
+}
+#users_list{
+  height: 400px;
+  border: 1px solid #040E4C;
+  padding: 0px;
+  overflow-y: scroll;
+}
+#users_title{
+  height: 37px;
+  width: 100%;
+  background-color: #17AAA5;
+  text-align: center;
+  border-bottom: 1px solid #040E4C;
+  padding-top: 2px;
+}
+.user_page{
+  padding: 8px;
+}
+.user_page section{
+  margin-left: 15%;
+}
+.user_page:hover {
+  background-color: #DFA85E;
+}
+
+#parkings_chart{
+  height: 400px;
+  overflow-y: scroll;
+  padding-right: 0;
+  margin-bottom: 0;
+}
+.table {
+  border: 1px solid #040E4C;
+}
+.table > thead > tr > th {
+  background-color: #17AAA5;
+}
+.table > thead > tr > th,
+.table > tbody > tr > td{
+  border-bottom: 1px solid #040E4C;
+}
+.table > tbody > tr:hover {
+  background-color: #DFA85E;
+}
+
 th, td{
   text-align: center;
 }
 
 
-
-#footer{
-  margin-top: 10%;
-  text-align: -moz-center;
-  color: #0B2161;
+#footer_container{
+  border-top: solid 1px #040E4C;
+  padding-top: 15px;
+  margin-top: 40%;
+  text-align: center;
+  font-size: 12px;
+}
+#ficheros{
+  border-right: solid 1px #040E4C;
 }
