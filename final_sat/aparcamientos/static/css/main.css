@@ -19,6 +19,8 @@ body{
   background-color: black;
   border-color: #0D7AF9;
 }
+
+#nuevo_titulo,
 .has-success .form-control {
   border-color: #0D7AF9;
   background-color: #dceaf1;

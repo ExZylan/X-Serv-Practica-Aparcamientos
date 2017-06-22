@@ -110,10 +110,11 @@ def cambiar_titulo(request):
     print("entra a cambiar titulo")
     if request.method == 'POST':
         print(request.POST)
-        titulo_nuevo = request.POST['title']
+        print(request.user)
+        titulo_nuevo = request.POST.get('nuevo_titulo','No funciona')
         #titulo_nuevo = "probando función"
         print(titulo_nuevo)
-        Users_Page(usuario=request.user, titulo=titulo_nuevo).save()
+        Users_Page(usuario=request.user.username, titulo=titulo_nuevo).save()
         context['user'] = request.user
         users_page = user.objects.filter(username=request.user.username).first()
         context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
