@@ -18,11 +18,11 @@ Página personal de usuario
   <h3>{{usuario_pagina.titulo}}</h3>
   {% if user.is_authenticated %}
     {% if pagina_propia %}
-      <form id="cambiar_titulo" action="/cambiar_titulo/" method ="POST">
+      <form id="cambiar_titulo" action="/cambiar_titulo/" method="POST">
         {% csrf_token %}
         Título de página:
-        <input id="titulo" type="text" name="titulo">
-        <input id="cambiar_titulo" type="submit" value="Cambiar título">
+        <input id="title" type="text" name="title" value="Escribe aquí tu nuevo título">
+        <button class="btn btn-log" id="cambiar_titulo" type="submit">Cambiar título</button>
       </form>
     {% endif %}
   {% endif %}

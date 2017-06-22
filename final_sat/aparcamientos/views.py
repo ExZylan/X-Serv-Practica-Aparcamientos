@@ -92,7 +92,7 @@ def accesibilidad(request):
         accesibilidad_on = True
     return redirect('/')
 
-@csrf_exempt
+
 def pagina_usuario(request,usuario_pag):
     context = {}
     context['user'] = request.user
@@ -102,11 +102,16 @@ def pagina_usuario(request,usuario_pag):
     context['users_list'] = Users_Page.objects.all()
     return render_to_response('usuario.html', context)
 
+
 @csrf_exempt
 def cambiar_titulo(request):
+    print(request)
+    context = {}
+    print("entra a cambiar titulo")
     if request.method == 'POST':
-        context = {}
-        titulo_nuevo = request.POST['titulo']
+        print(request.POST)
+        titulo_nuevo = request.POST['title']
+        #titulo_nuevo = "probando función"
         print(titulo_nuevo)
         Users_Page(usuario=request.user, titulo=titulo_nuevo).save()
         context['user'] = request.user
@@ -140,6 +145,7 @@ def log_in(request):
 
 @csrf_exempt
 def log_out(request):
+    print(request)
     logout(request)
     return redirect('/')
 
