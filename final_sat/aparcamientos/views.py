@@ -18,6 +18,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 accesibilidad_on = False
 error_loading = False
+filtro_dist = ""
 
 @csrf_exempt
 def cargar_aparcamientos(request):
@@ -51,6 +52,9 @@ def show_index(request):
 
 
 def aparcamientos(request):
+    global filtro_dist
+    filtro_dist = ""
+
     context = {}
     context['user'] = request.user
     context['users_list'] = Users_Page.objects.all()
@@ -62,6 +66,8 @@ def aparcamientos(request):
     return render_to_response('aparcamientos.html', context)
 
 def filtrar_distrito(request,dist):
+    global filtro_dist
+    filtro_dist = dist
     context = {}
     context['user'] = request.user
     context['users_list'] = Users_Page.objects.all()
@@ -74,13 +80,34 @@ def filtrar_distrito(request,dist):
     return render_to_response('aparcamientos.html', context)
 
 
+def sumar_like(request, id_parking):
+    parking = Parking.objects.get(id_entidad=id_parking)
+    parking.likes += 1
+    parking.save()
 
-
-def aparcamientos_id(request,id):
     context = {}
     context['user'] = request.user
     context['users_list'] = Users_Page.objects.all()
-    context['parking'] = Parking.objects.filter(id_entidad=id).first()
+    global accesibilidad_on
+    if accesibilidad_on:
+        global filtro_dist
+        if filtro_dist != "":
+            context['parkings'] = Parking.objects.filter(accesibilidad=1).filter(distrito=filtro_dist)
+        else:
+            context['parkings'] = Parking.objects.filter(accesibilidad=1)
+    else:
+        if filtro_dist != "":
+            context['parkings'] = Parking.objects.filter(distrito=filtro_dist)
+        else:
+            context['parkings'] = Parking.objects.all()
+    return render_to_response('aparcamientos.html', context)
+
+
+def aparcamientos_id(request,id_parking):
+    context = {}
+    context['user'] = request.user
+    context['users_list'] = Users_Page.objects.all()
+    context['parking'] = Parking.objects.filter(id_entidad=id_parking).first()
     return render_to_response('aparcamientos_id.html', context)
 
 
@@ -114,7 +141,9 @@ def cambiar_titulo(request):
         titulo_nuevo = request.POST.get('nuevo_titulo','No funciona')
         #titulo_nuevo = "probando función"
         print(titulo_nuevo)
-        Users_Page(usuario=request.user.username, titulo=titulo_nuevo).save()
+        usuario = Users_Page.get(usuario=request.user)
+        usuario.titulo=titulo_nuevo
+        usuario.save()
         context['user'] = request.user
         users_page = user.objects.filter(username=request.user.username).first()
         context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
