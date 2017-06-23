@@ -31,7 +31,10 @@ urlpatterns = [
     url(r'^favoritos/(?P<id_parking>\d+)/$', 'aparcamientos.views.favoritos',),
     url(r'^accesibilidad/$', 'aparcamientos.views.accesibilidad',),
     url(r'^cargar_aparcamientos/$', 'aparcamientos.views.cargar_aparcamientos',),
+
+    url(r'^preferencias/$', 'aparcamientos.views.preferencias',),
     url(r'^cambiar_titulo/$', 'aparcamientos.views.cambiar_titulo',),
+    url(r'^cambiar_css/$', 'aparcamientos.views.cambiar_css',),
     url(r'^filtrar_distrito/(?P<dist>\S+)/$', 'aparcamientos.views.filtrar_distrito',),
     url(r'^about/$', 'aparcamientos.views.about',),
     url(r'^admin/', include(admin.site.urls)),

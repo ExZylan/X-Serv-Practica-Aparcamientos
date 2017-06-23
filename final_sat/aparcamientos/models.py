@@ -23,7 +23,6 @@ class Parking(models.Model):
 class Users_Page(models.Model):
     usuario = models.OneToOneField(User, related_name="usuario")
     titulo = models.TextField(max_length=256, null=True)
-    color = models.CharField(max_length=256, null=True)
-    background = models.CharField(max_length=256, null=True)
-    font_size = models.IntegerField(null=True)
-    
+    color = models.CharField(max_length=256, default="#040E4C")
+    background = models.CharField(max_length=256, default="#8FE7D5")
+    font_size = models.IntegerField(default=15)

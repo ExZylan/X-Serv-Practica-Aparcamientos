@@ -10,20 +10,17 @@
 
 
 {% block title %}
-Página personal de usuario
+  <h1>Página personal de usuario</h1>
 {% endblock title %}
 
 
 {% block content %}
-  <h3>{{usuario_pagina.titulo}}</h3>
-  {% if user.is_authenticated %}
-    {% if pagina_propia %}
-      <form action="/cambiar_titulo/" method="POST">
-        {% csrf_token %}
-        Título de página:
-        <input id="nuevo_titulo" class="form-control" type="text" name="nuevo_titulo" placeholder="Escribe aquí tu nuevo título" value="">
-        <button class="btn btn-log" id="cambiar_titulo" type="submit">Cambiar título</button>
-      </form>
+  <h2>{{usuario_pagina.titulo}}
+    {% if user.is_authenticated %}
+      {% if pagina_propia %}
+        <a href="/preferencias/"><i class="fa fa-cog" aria-hidden="true"></i></a>
+      {% endif %}
     {% endif %}
-  {% endif %}
+  </h2>
+
 {% endblock content %}

@@ -1,0 +1,36 @@
+<!--Preferencias de ususario-->
+{% extends "index.html" %}
+
+
+{% block navbar %}
+  <a type="button" class="btn btn-lg" href="/">Inicio</a>
+  <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
+  <a type="button" class="btn btn-lg" href="/about">About</a>
+{% endblock navbar %}
+
+
+{% block title %}
+  <h1>Preferencias de usuario</h1>
+{% endblock title %}
+
+
+{% block content %}
+  <h3>{{usuario_pagina.titulo}}</h3>
+  {% if user.is_authenticated %}
+    <form action="/cambiar_titulo/" method="POST">
+      {% csrf_token %}
+      Título de página:</br>
+      <input id="nuevo_titulo" class="form-control" type="text" name="nuevo_titulo" placeholder="Escribe aquí tu nuevo título" value="">
+      <button class="btn btn-preferences" id="cambiar_titulo" type="submit">Cambiar título</button>
+    </form></br></br>
+    Letra:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fondo:&nbsp;&nbsp;&nbsp;&nbsp;Tamaño:
+    <form action="/cambiar_css/" method="POST">
+      {% csrf_token %}
+
+      <input id="nuevo_color" class="form-control" type="color" name="nuevo_color" value="{{user.color}}">
+      <input id="nuevo_bg" class="form-control" type="color" name="nuevo_bg" value="{{user.background}}">
+      <input id="nuevo_font" class="form-control" type="number" name="nuevo_font" value="{{user.font_size}}">
+      <button class="btn btn-preferences" id="cambiar_css" type="submit">Cambiar estilo</button>
+    </form>
+  {% endif %}
+{% endblock content %}

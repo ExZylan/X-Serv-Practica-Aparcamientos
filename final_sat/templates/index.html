@@ -36,6 +36,7 @@
                     <span class="sr-only">(success)</span>
                   </div>
                   <button type="submit" class="btn btn-log">Salir</button>
+                </form>
               </div>
             {% else %}
               <form id="login_form" action="/login/" method="POST">
@@ -80,12 +81,11 @@
 
 
     <section id="title">
-      <h1>
-        {% block title %}
-        INICIO
-        {% endblock title %}
-      </h1>
+      {% block title %}
+        <h1>INICIO</h1>
+      {% endblock title %}
     </section>
+
 
     <section id="info">
       <div id="users_list" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">

@@ -38,6 +38,7 @@ def cargar_aparcamientos(request):
         error_loading = True
     return redirect('/')
 
+
 def show_index(request):
     context = {}
     parkings = Parking.objects.all()
@@ -64,6 +65,8 @@ def aparcamientos(request):
     else:
         context['parkings'] = Parking.objects.all()
     return render_to_response('aparcamientos.html', context)
+
+
 
 def filtrar_distrito(request,dist):
     global filtro_dist
@@ -153,26 +156,37 @@ def pagina_usuario(request,usuario_pag):
     return render_to_response('usuario.html', context)
 
 
+def preferencias(request):
+    context = {}
+    context['user'] = request.user
+    context['usuario_pagina'] = request.user
+    context['users_list'] = Users_Page.objects.all()
+    return render_to_response('preferencias.html', context)
+
+
 @csrf_exempt
 def cambiar_titulo(request):
-    print(request)
-    context = {}
-    print("entra a cambiar titulo")
     if request.method == 'POST':
-        print(request.POST)
-        print(request.user)
-        titulo_nuevo = request.POST.get('nuevo_titulo','No funciona')
-        #titulo_nuevo = "probando función"
-        print(titulo_nuevo)
-        usuario = Users_Page.get(usuario=request.user)
-        usuario.titulo=titulo_nuevo
-        usuario.save()
-        context['user'] = request.user
-        users_page = user.objects.filter(username=request.user.username).first()
-        context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
-        context['pagina_propia'] = str(request.user.username) == str(Users_Page.objects.filter(usuario=users_page).first().usuario)
-        context['users_list'] = Users_Page.objects.all()
-    return render_to_response('usuario.html', context)
+        titulo_nuevo = request.POST['nuevo_titulo']
+        usuario_pagina = Users_Page.objects.get(usuario=request.user)
+        usuario_pagina.titulo = titulo_nuevo
+        usuario_pagina.save()
+    return redirect("/"+request.user.username+"/")
+
+
+@csrf_exempt
+def cambiar_css(request):
+    if request.method == 'POST':
+        color_nuevo = request.POST['nuevo_color']
+        bg_nuevo = request.POST['nuevo_bg']
+        font_nuevo = request.POST['nuevo_font']
+        usuario_pagina = Users_Page.objects.get(usuario=request.user)
+        usuario_pagina.color = color_nuevo
+        usuario_pagina.background = bg_nuevo
+        usuario_pagina.background = font_nuevo
+        usuario_pagina.save()
+    return redirect("/"+request.user.username+"/")
+
 
 def canal_xml(request,usuario_pag):
     return HttpResponse("Canal XML de "+usuario_pag)

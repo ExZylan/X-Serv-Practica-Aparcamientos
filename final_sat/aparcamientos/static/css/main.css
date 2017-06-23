@@ -24,6 +24,9 @@ body{
   border-color: #0D7AF9;
 }
 
+#nuevo_font,
+#nuevo_bg,
+#nuevo_color,
 #nuevo_titulo,
 .has-success .form-control {
   border-color: #0D7AF9;
@@ -35,6 +38,17 @@ body{
 }
 .has-success .form-control-feedback {
   color: #0D7AF9;
+}
+
+#nuevo_font,
+#nuevo_bg,
+#nuevo_color{
+  width: 7%;
+  float: left;
+}
+#nuevo_titulo{
+  width: 60%;
+  float: left;
 }
 
 #title h1{
@@ -115,6 +129,29 @@ body{
   color: black;
   border-color: black;
 }
+
+.btn-preferences{
+  background-color: #DCEAF1;
+  color: black;
+  border-color: #0D7AF9;
+  float: left;
+  border-width: 2px;
+  width: 14%;
+  height: 35px;
+  /*width: 100%;*/
+}
+.btn-preferences:hover{
+  background-color: #9edbfa;
+  color: black;
+  border-color: black;
+}
+
+.fa-cog{
+  float: right;
+  margin-right: 5%;
+  font-size: 20px;
+}
+
 /* FIN BOTONES*/
 
 a,
