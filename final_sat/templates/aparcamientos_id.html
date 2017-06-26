@@ -15,25 +15,46 @@
 
 
 {% block content %}
-  <h3><a href="{{parking.url}}">{{parking.nombre}}</a></h3>
-  <p>{{parking.direccion}}</p>
-  <p>{{parking.barrio}}</p>
-  <p>{{parking.distrito}}</p>
-  <p>Coordenadas:
-    <ul>
-      <li>Latitud: {{parking.latitud}}</li>
-      <li>Longitud: {{parking.longitud}}</li>
-    </ul>
-  </p>
-  <p>Descripción: {{parking.descripcion}}</p>
-  {% if parking.accesibilidad == 1 %}
-    <p>Accesible: Sí</p>
-  {% else %}
-    <p>Accesible: No</p>
-  {% endif %}
-  <p>Contacto: {{parking.contacto}}</p>
-  <p>Likes: {{parking.likes}}</p>
-  {% if user.is_authenticated %}
-    <p><i class="fa fa-heart" aria-hidden="true"></i></p>
-  {% endif %}
+  <h3 class="aparcamiento_id"><a href="{{parking.url}}">{{parking.nombre}}</a></h3>
+  <div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+      <p>{{parking.direccion}}</p>
+      <p>{{parking.barrio}}</p>
+      <p>{{parking.distrito}}</p>
+      <p>Coordenadas:
+        <ul>
+          <li>Latitud: {{parking.latitud}}</li>
+          <li>Longitud: {{parking.longitud}}</li>
+        </ul>
+      </p>
+      <p>Descripción:
+        <ul>
+          <li>{{parking.descripcion}}</li>
+        </ul>
+      </p>
+      {% if parking.accesibilidad == 1 %}
+        <p>Accesible: Sí</p>
+      {% else %}
+        <p>Accesible: No</p>
+      {% endif %}
+      <p>Contacto: {{parking.contacto}}</p>
+      <p>Likes: {{parking.likes}}</p>
+      {% if user.is_authenticated %}
+        {% for fav in favoritos %}
+          {% if parking.id_entidad == fav.id_entidad %}
+            <p>
+              <i class="fa fa-heart" aria-hidden="true"></i>
+              Este aparcamiento está en tu lista de favoritos.
+            </p>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 xs-hidden">
+      <div id="map">
+
+      </div>
+    </div>
+  </div>
+
 {% endblock content %}

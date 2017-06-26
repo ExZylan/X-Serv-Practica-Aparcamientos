@@ -48,6 +48,10 @@ def show_index(request):
     context['users_list'] = Users_Page.objects.all()
     global accesibilidad_on
     context['accesibilidad_on'] = accesibilidad_on
+    if accesibilidad_on:
+        context['parkings'] = Parking.objects.filter(accesibilidad=1)
+    else:
+        context['parkings'] = Parking.objects.all()
     global error_loading
     context['error_loading'] = error_loading
     context['parkings_loaded'] = (len(parkings) != 0)
@@ -93,25 +97,7 @@ def sumar_like(request, id_parking):
     parking = Parking.objects.get(id_entidad=id_parking)
     parking.likes += 1
     parking.save()
-
-    context = {}
-    context['user'] = request.user
-    users_css = user.objects.filter(username=request.user.username).first()
-    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
-    context['users_list'] = Users_Page.objects.all()
-    global accesibilidad_on
-    if accesibilidad_on:
-        global filtro_dist
-        if filtro_dist != "":
-            context['parkings'] = Parking.objects.filter(accesibilidad=1).filter(distrito=filtro_dist)
-        else:
-            context['parkings'] = Parking.objects.filter(accesibilidad=1)
-    else:
-        if filtro_dist != "":
-            context['parkings'] = Parking.objects.filter(distrito=filtro_dist)
-        else:
-            context['parkings'] = Parking.objects.all()
-    return render_to_response('aparcamientos.html', context)
+    return redirect('/aparcamientos/')
 
 
 def favoritos_add(request, id_parking):
@@ -136,6 +122,8 @@ def aparcamientos_id(request,id_parking):
     context['user'] = request.user
     users_css = user.objects.filter(username=request.user.username).first()
     context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
+    favs = Users_Favs.objects.filter(usuario=users_css)
+    context['favoritos'] = favs
     context['users_list'] = Users_Page.objects.all()
     context['parking'] = Parking.objects.filter(id_entidad=id_parking).first()
     return render_to_response('aparcamientos_id.html', context)
@@ -165,7 +153,6 @@ def pagina_usuario(request,usuario_pag):
     for fav in favs:
         parking = Parking.objects.get(id_entidad=fav.id_entidad)
         context['parkings'].append(parking)
-
     return render_to_response('usuario.html', context)
 
 

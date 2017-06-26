@@ -14,8 +14,8 @@
 
 
 {% block content %}
-  <div id="parkings_chart">
-    <table class="table table-responsive">
+  <div class="parkings_chart">
+    <table id="tabla_todos" class="tabla_todos table table-responsive">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -65,7 +65,7 @@
             <td>{{parking.barrio}}</td>
             <td>{{parking.distrito}}</td>
             <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
-            <td>{{parking.likes}}
+            <td>
               <a href="/sumar_like/{{parking.id_entidad}}/">
                 <i class="like fa fa-thumbs-o-up" aria-hidden="true"></i>
               </a>
@@ -81,5 +81,9 @@
         {% endfor %}
       </tbody>
     </table>
+    <div id="pagination">
+      Mostrar página:
+  	</div>
   </div>
+
 {% endblock content %}

@@ -23,8 +23,8 @@
     {% endif %}
   </h2>
 
-  <div id="parkings_chart">
-    <table class="table table-responsive">
+  <div class="parkings_chart">
+    <table id="tabla_favs" class="table table-responsive">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -36,6 +36,7 @@
           {% if pagina_propia %}
             <th>Favorito</th>
           {% endif %}
+          <th>Fecha</th>
         </tr>
       </thead>
       <tbody>
@@ -45,17 +46,27 @@
             <td>{{parking.direccion}}</td>
             <td>{{parking.barrio}}</td>
             <td>{{parking.distrito}}</td>
-            <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
+            <td><a href="/aparcamientos/{{parking.id_entidad}}/"> +info</a></td>
             <td>{{parking.likes}}</td>
             {% if pagina_propia %}
-              <td><a href="/favoritos/del/{{parking.id_entidad}}/">
-                <i class="del_favourite fa fa-heart" aria-hidden="true"></i>
-              </a></td>
+              <td>
+                <a href="/favoritos/del/{{parking.id_entidad}}/">
+                  <i class="del_favourite fa fa-heart" aria-hidden="true"></i>
+                </a>
+              </td>
             {% endif %}
+            {% for fav in favoritos %}
+              {% if parking.id_entidad == fav.id_entidad %}
+                <td>{{fav.fecha}}</td>
+              {% endif %}
+            {% endfor %}
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <div id="pagination">
+      Mostrar página:
+  	</div>
   </div>
 
 {% endblock content %}

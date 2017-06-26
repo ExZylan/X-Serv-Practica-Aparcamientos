@@ -150,7 +150,10 @@ body{
   margin-right: 5%;
   font-size: 20px;
 }
-
+.fa-heart-o,
+.fa-heart{
+  font-size: 15px;
+}
 /* FIN BOTONES*/
 
 a,
@@ -169,10 +172,9 @@ a:hover {
   padding-left: 10px;
 }
 #users_list{
-  height: 400px;
+  height: 420px;
   border: 1px solid #040E4C;
   padding: 0px;
-  overflow-y: scroll;
 }
 #users_title{
   height: 38px;
@@ -193,9 +195,8 @@ a:hover {
   background-color: #DFA85E;
 }
 
-#parkings_chart{
-  height: 400px;
-  overflow-y: scroll;
+
+.parkings_chart{
   padding-right: 0;
   margin-bottom: 0;
 }
@@ -208,7 +209,7 @@ a:hover {
 .table > thead > tr > th,
 .table > tbody > tr > td{
   border-bottom: 1px solid #040E4C;
-  font-size: 18px;
+  font-size: 12px;
 }
 .table > tbody > tr:hover {
   background-color: #DFA85E;
@@ -228,6 +229,17 @@ th, td{
 
 .titulo_usuario {
   font-family: 'Bungee Inline', cursive;
+  margin-bottom: 10px;
+  margin-top: -2px;
+}
+
+.aparcamiento_id{
+  font-family: 'Signika', sans-serif;
+}
+#map{
+  width: 200px;
+  height: 350px;
+  border: 1px solid #040E4C;
 }
 
 /** CAJA ABOUT **/
