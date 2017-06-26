@@ -158,6 +158,11 @@ a:hover {
   color: #040E4C;
 }
 
+#link_crear_usuario{
+  color: #9edbfa;
+  text-align: center;
+  background-color: black;
+}
 
 
 #info{

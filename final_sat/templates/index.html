@@ -74,7 +74,9 @@
                   <span class="sr-only">(success)</span>
                 </div>
                 <button type="submit" class="btn btn-log">Entrar</button>
+                <a id="link_crear_usuario" href="/">&nbsp;&nbsp;&nbsp;&nbsp;O pincha aquí para crear un nuevo usuario&nbsp;&nbsp;&nbsp;&nbsp;</a>
               </form>
+
               {% if form.errors %}
                 <p class="alert alert-danger">Usuario o contraseña incorrectos.</p>
               {% endif %}
@@ -119,7 +121,7 @@
         {% block content %}
           {% if parkings_loaded %}
             {% if accesibilidad_on %}
-              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver lista completa de aparcamientos</a>
+              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver lista completa de aparcamientos</a>&nbsp;&nbsp;
             {% else %}
               <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver sólo aparcamientos accesibles</a>
             {% endif %}
