@@ -43,6 +43,8 @@ def show_index(request):
     context = {}
     parkings = Parking.objects.all()
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     global accesibilidad_on
     context['accesibilidad_on'] = accesibilidad_on
@@ -58,6 +60,8 @@ def aparcamientos(request):
 
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     global accesibilidad_on
     if accesibilidad_on:
@@ -73,6 +77,8 @@ def filtrar_distrito(request,dist):
     filtro_dist = dist
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     distr = dist.replace("_", " ")
     global accesibilidad_on
@@ -90,6 +96,8 @@ def sumar_like(request, id_parking):
 
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     global accesibilidad_on
     if accesibilidad_on:
@@ -113,6 +121,8 @@ def favoritos(request, id_parking):
 
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     global accesibilidad_on
     if accesibilidad_on:
@@ -132,6 +142,8 @@ def favoritos(request, id_parking):
 def aparcamientos_id(request,id_parking):
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     context['parking'] = Parking.objects.filter(id_entidad=id_parking).first()
     return render_to_response('aparcamientos_id.html', context)
@@ -149,6 +161,8 @@ def accesibilidad(request):
 def pagina_usuario(request,usuario_pag):
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     users_page = user.objects.filter(username=usuario_pag).first()
     context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
     context['pagina_propia'] = str(request.user.username) == str(Users_Page.objects.filter(usuario=users_page).first().usuario)
@@ -159,7 +173,9 @@ def pagina_usuario(request,usuario_pag):
 def preferencias(request):
     context = {}
     context['user'] = request.user
-    context['usuario_pagina'] = request.user
+    users_page = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_page).first()
+    context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
     context['users_list'] = Users_Page.objects.all()
     return render_to_response('preferencias.html', context)
 
@@ -178,12 +194,17 @@ def cambiar_titulo(request):
 def cambiar_css(request):
     if request.method == 'POST':
         color_nuevo = request.POST['nuevo_color']
+        print(color_nuevo)
         bg_nuevo = request.POST['nuevo_bg']
+        print(bg_nuevo)
         font_nuevo = request.POST['nuevo_font']
         usuario_pagina = Users_Page.objects.get(usuario=request.user)
         usuario_pagina.color = color_nuevo
         usuario_pagina.background = bg_nuevo
-        usuario_pagina.background = font_nuevo
+        if font_nuevo == "":
+            font_nuevo = usuario_pagina.font_size
+        print(font_nuevo)
+        usuario_pagina.font_size = font_nuevo
         usuario_pagina.save()
     return redirect("/"+request.user.username+"/")
 
@@ -220,5 +241,7 @@ def log_out(request):
 def about(request):
     context = {}
     context['user'] = request.user
+    users_css = user.objects.filter(username=request.user.username).first()
+    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
     context['users_list'] = Users_Page.objects.all()
     return render_to_response('about.html', context)
