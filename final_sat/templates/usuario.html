@@ -15,12 +15,47 @@
 
 
 {% block content %}
-  <h2>{{usuario_pagina.titulo}}
+  <h2 class="titulo_usuario">{{usuario_pagina.titulo}}
     {% if user.is_authenticated %}
       {% if pagina_propia %}
         <a href="/preferencias/"><i class="fa fa-cog" aria-hidden="true"></i></a>
       {% endif %}
     {% endif %}
   </h2>
+
+  <div id="parkings_chart">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Direccion</th>
+          <th>Barrio</th>
+          <th>Distrito</th>
+          <th>Comentarios</th>
+          <th>Likes</th>
+          {% if pagina_propia %}
+            <th>Favorito</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for parking in parkings %}
+          <tr class="odd gradeX">
+            <td><a href="{{parking.url}}">{{parking.nombre}}</a></td>
+            <td>{{parking.direccion}}</td>
+            <td>{{parking.barrio}}</td>
+            <td>{{parking.distrito}}</td>
+            <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
+            <td>{{parking.likes}}</td>
+            {% if pagina_propia %}
+              <td><a href="/favoritos/del/{{parking.id_entidad}}/">
+                <i class="del_favourite fa fa-heart" aria-hidden="true"></i>
+              </a></td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 
 {% endblock content %}

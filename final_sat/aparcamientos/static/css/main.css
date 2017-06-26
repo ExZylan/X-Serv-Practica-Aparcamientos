@@ -10,7 +10,6 @@ body{
   font-size: 15px;
 }
 
-
 #banner{
   width: 100vw;
   height: 220px;
@@ -219,6 +218,11 @@ th, td{
 }
 .favourite{
   font-size: 18px;
+}
+
+
+.titulo_usuario {
+  font-family: 'Bungee Inline', cursive;
 }
 
 /** CAJA ABOUT **/

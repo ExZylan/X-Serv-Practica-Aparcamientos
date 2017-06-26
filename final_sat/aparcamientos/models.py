@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
+from django.utils import timezone
 
 
 # Create your models here.
@@ -26,3 +28,9 @@ class Users_Page(models.Model):
     color = models.CharField(max_length=256, default="#040E4C")
     background = models.CharField(max_length=256, default="#8FE7D5")
     font_size = models.IntegerField(default=15)
+
+
+class Users_Favs(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    id_entidad = models.IntegerField()
+    fecha = models.DateTimeField(default = timezone.now())

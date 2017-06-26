@@ -10,7 +10,7 @@ $(document).ready(function() {
     }
   );
 
-  $('i.favourite').hover(
+  $('i.add_favourite').hover(
     function() {
       $(this).removeClass("fa-heart-o")
       $(this).addClass("fa-heart")
@@ -20,11 +20,13 @@ $(document).ready(function() {
     }
   );
 
-  $('i.favourite').click(
+  $('i.del_favourite').hover(
     function() {
+      $(this).removeClass("fa-heart")
+      $(this).addClass("fa-heart-o")
+    }, function() {
       $(this).removeClass("fa-heart-o")
       $(this).addClass("fa-heart")
     }
   );
-
 })

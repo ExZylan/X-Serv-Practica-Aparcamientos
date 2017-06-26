@@ -28,7 +28,8 @@ urlpatterns = [
     url(r'^aparcamientos/$', 'aparcamientos.views.aparcamientos',),
     url(r'^aparcamientos/(?P<id_parking>\d+)/$', 'aparcamientos.views.aparcamientos_id',),
     url(r'^sumar_like/(?P<id_parking>\d+)/$', 'aparcamientos.views.sumar_like',),
-    url(r'^favoritos/(?P<id_parking>\d+)/$', 'aparcamientos.views.favoritos',),
+    url(r'^favoritos/add/(?P<id_parking>\d+)/$', 'aparcamientos.views.favoritos_add',),
+    url(r'^favoritos/del/(?P<id_parking>\d+)/$', 'aparcamientos.views.favoritos_del',),
     url(r'^accesibilidad/$', 'aparcamientos.views.accesibilidad',),
     url(r'^cargar_aparcamientos/$', 'aparcamientos.views.cargar_aparcamientos',),
 

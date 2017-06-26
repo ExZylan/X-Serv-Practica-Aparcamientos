@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
-from .models import Parking, Users_Page
+from .models import Parking, Users_Page, Users_Favs
 from operator import itemgetter
 import urllib.request
 from xml.sax import make_parser
@@ -114,29 +114,21 @@ def sumar_like(request, id_parking):
     return render_to_response('aparcamientos.html', context)
 
 
-def favoritos(request, id_parking):
-    parking = Parking.objects.get(id_entidad=id_parking)
-    parking.likes += 1
-    parking.save()
+def favoritos_add(request, id_parking):
+    parking_fav = Users_Favs.objects.filter(usuario=request.user, id_entidad=id_parking).first()
+    if not parking_fav:
+        Users_Favs.objects.create(
+            usuario = request.user,
+            id_entidad = id_parking,
+        )
+    return redirect('/aparcamientos/')
 
-    context = {}
-    context['user'] = request.user
-    users_css = user.objects.filter(username=request.user.username).first()
-    context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
-    context['users_list'] = Users_Page.objects.all()
-    global accesibilidad_on
-    if accesibilidad_on:
-        global filtro_dist
-        if filtro_dist != "":
-            context['parkings'] = Parking.objects.filter(accesibilidad=1).filter(distrito=filtro_dist)
-        else:
-            context['parkings'] = Parking.objects.filter(accesibilidad=1)
-    else:
-        if filtro_dist != "":
-            context['parkings'] = Parking.objects.filter(distrito=filtro_dist)
-        else:
-            context['parkings'] = Parking.objects.all()
-    return render_to_response('aparcamientos.html', context)
+
+def favoritos_del(request, id_parking):
+    parking_fav = Users_Favs.objects.filter(usuario=request.user, id_entidad=id_parking).first()
+    if parking_fav:
+        parking_fav.delete()
+    return redirect("/"+request.user.username+"/")
 
 
 def aparcamientos_id(request,id_parking):
@@ -167,6 +159,13 @@ def pagina_usuario(request,usuario_pag):
     context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
     context['pagina_propia'] = str(request.user.username) == str(Users_Page.objects.filter(usuario=users_page).first().usuario)
     context['users_list'] = Users_Page.objects.all()
+    favs = Users_Favs.objects.filter(usuario=users_page)
+    context['favoritos'] = favs
+    context['parkings'] = []
+    for fav in favs:
+        parking = Parking.objects.get(id_entidad=fav.id_entidad)
+        context['parkings'].append(parking)
+
     return render_to_response('usuario.html', context)
 
 
@@ -194,16 +193,13 @@ def cambiar_titulo(request):
 def cambiar_css(request):
     if request.method == 'POST':
         color_nuevo = request.POST['nuevo_color']
-        print(color_nuevo)
         bg_nuevo = request.POST['nuevo_bg']
-        print(bg_nuevo)
-        font_nuevo = request.POST['nuevo_font']
         usuario_pagina = Users_Page.objects.get(usuario=request.user)
         usuario_pagina.color = color_nuevo
         usuario_pagina.background = bg_nuevo
+        font_nuevo = request.POST['nuevo_font']
         if font_nuevo == "":
             font_nuevo = usuario_pagina.font_size
-        print(font_nuevo)
         usuario_pagina.font_size = font_nuevo
         usuario_pagina.save()
     return redirect("/"+request.user.username+"/")
@@ -233,7 +229,6 @@ def log_in(request):
 
 @csrf_exempt
 def log_out(request):
-    print(request)
     logout(request)
     return redirect('/')
 

@@ -15,7 +15,7 @@
 
 
 {% block content %}
-  <h3>{{usuario_pagina.titulo}}</h3>
+  <h3 class="titulo_usuario">{{usuario_pagina.titulo}}</h3>
   {% if user.is_authenticated %}
     <form action="/cambiar_titulo/" method="POST">
       {% csrf_token %}
