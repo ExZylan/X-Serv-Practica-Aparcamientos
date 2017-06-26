@@ -233,11 +233,18 @@ th, td{
   margin-top: -2px;
 }
 
-.aparcamiento_id{
+.aparcamiento_id_title{
   font-family: 'Signika', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
 }
+
+#aparcamiento_id{
+  padding-left: 50px;
+}
+
 #map{
-  width: 200px;
+  width: 300px;
   height: 350px;
   border: 1px solid #040E4C;
 }
@@ -262,7 +269,7 @@ th, td{
 #footer_container{
   border-top: solid 1px #040E4C;
   padding-top: 15px;
-  margin-top: 40%;
+  margin-top: 50%;
   text-align: center;
   font-size: 12px;
 }

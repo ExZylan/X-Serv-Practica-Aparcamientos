@@ -37,9 +37,9 @@ function pagination(num_rows,element){
   });
 }
 
-function sortTable() {
+function sortTable(element_id) {
   var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("tabla_likes");
+  table = document.getElementById(element_id);
   switching = true;
   /*Make a loop that will continue until
   no switching has been done:*/
@@ -106,7 +106,6 @@ $(document).ready(function() {
 
   pagination(5, "#tabla_favs tbody tr");
   pagination(7, "#tabla_todos tbody tr");
-  sortTable();
   pagination(5, "#tabla_likes tbody tr");
 
 

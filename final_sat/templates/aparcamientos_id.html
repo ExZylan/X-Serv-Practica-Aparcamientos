@@ -15,9 +15,9 @@
 
 
 {% block content %}
-  <h3 class="aparcamiento_id"><a href="{{parking.url}}">{{parking.nombre}}</a></h3>
+  <h3 class="aparcamiento_id_title"><a href="{{parking.url}}">{{parking.nombre}}</a></h3>
   <div class="row">
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+    <div id="aparcamiento_id" class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
       <p>{{parking.direccion}}</p>
       <p>{{parking.barrio}}</p>
       <p>{{parking.distrito}}</p>
@@ -50,11 +50,24 @@
         {% endfor %}
       {% endif %}
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 xs-hidden">
+    <div class="col-lg-4 col-md-4 col-sm-4 xs-hidden">
       <div id="map">
 
       </div>
     </div>
   </div>
 
+  <script>
+    $(document).ready(function() {
+      map = L.map("map").setView([40.4169, -3.7034], 14);
+      // add an OpenStreetMap tile layer
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      marker = L.marker([{{parking.latitud}}, {{parking.longitud}}]).addTo(map)
+        .bindPopup("Aparcamiento")
+        .openPopup();
+    });
+  </script>
 {% endblock content %}
