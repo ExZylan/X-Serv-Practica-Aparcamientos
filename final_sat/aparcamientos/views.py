@@ -289,6 +289,32 @@ def log_out(request):
     return redirect('/')
 
 
+def registro(request):
+    context = {}
+    context['users_list'] = Users_Page.objects.all()
+    return render_to_response("registro.html",context)
+
+
+@csrf_exempt
+def sign_up(request):
+    username = request.POST['username']
+    password = request.POST['password-1']
+    password_2 = request.POST['password-2']
+    if password == password_2:
+        usuario = authenticate(username=username, password=password)
+        if usuario is None:
+            user.objects.create_user(username, "", password)
+            usuario = authenticate(username=username, password=password)
+            login(request,usuario)
+            Users_Page.objects.create(
+                usuario = usuario,
+                titulo = "Página de " + username,
+            )
+    return redirect("/")
+
+
+
+
 def about(request):
     context = {}
     context['user'] = request.user

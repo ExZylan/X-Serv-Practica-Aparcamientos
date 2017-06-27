@@ -1,0 +1,46 @@
+<!--Registro de ususario-->
+{% extends "index.html" %}
+
+
+{% block navbar %}
+  <a type="button" class="btn btn-lg" href="/">Inicio</a>
+  <a type="button" class="btn btn-lg" href="/aparcamientos">Todos</a>
+  <a type="button" class="btn btn-lg" href="/about">About</a>
+{% endblock navbar %}
+
+
+{% block title %}
+  <h1>Registro de usuarios</h1>
+{% endblock title %}
+
+
+{% block content %}
+  <form id="login_form" action="/sign_up/" method="POST">
+    <div class="form-group has-success has-feedback">
+      {% csrf_token %}
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+        <input id="username" type="text" class="form-control" name="username" placeholder="nombre de usuario" value="">
+      </div>
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span class="sr-only">(success)</span>
+    </div>
+    <div class="form-group has-success has-feedback">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        <input id="password-1" type="password" class="form-control" name="password-1" placeholder="contraseña" value="">
+      </div>
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span class="sr-only">(success)</span>
+    </div>
+    <div class="form-group has-success has-feedback">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+        <input id="password-2" type="password" class="form-control" name="password-2" placeholder="confirmar contraseña" value="">
+      </div>
+      <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+      <span class="sr-only">(success)</span>
+    </div>
+    <button type="submit" class="btn btn-log">Registrarse</button>
+  </form>
+{% endblock content %}

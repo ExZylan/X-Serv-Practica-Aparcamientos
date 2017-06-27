@@ -84,9 +84,9 @@
       </div>
     {% endfor %}
     </div>
-    <div id="nuevo_comentario" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-    <div class="users_title">Añadir comentario</div>
-      {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
+      <div id="nuevo_comentario" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="users_title">Añadir comentario</div>
         <form action="/add_comentario/{{parking.id_entidad}}/" method="POST">
           {% csrf_token %}
           Título:</br>

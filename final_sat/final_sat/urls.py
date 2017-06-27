@@ -18,6 +18,7 @@ from django.views.static import serve
 from django.contrib.auth.views import logout
 from aparcamientos import views
 
+
 admin.autodiscover()
 
 
@@ -26,6 +27,8 @@ urlpatterns = [
     url(r'^xml/$', 'aparcamientos.views.xml_inicio',),
     url(r'^json/$', 'aparcamientos.views.json_inicio',),
     url(r'^rss/$', 'aparcamientos.views.rss_comentarios',),
+    url(r'^registro/$', 'aparcamientos.views.registro',),
+    url(r'^sign_up/$','aparcamientos.views.sign_up',),
     url(r'^login/$', 'aparcamientos.views.log_in',),
     url(r'^logout/$', 'aparcamientos.views.log_out',),
     url(r'^aparcamientos/$', 'aparcamientos.views.aparcamientos',),

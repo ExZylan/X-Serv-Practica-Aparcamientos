@@ -17,6 +17,14 @@ body{
 #logbox{
   margin: 20px;
 }
+
+#link_crear_usuario{
+  color: #9edbfa;
+  text-align: center;
+  background-color: black;
+  border-color: transparent;
+}
+
 .has-success .input-group-addon {
   color: #9edbfa;
   background-color: black;
@@ -170,12 +178,6 @@ body{
 a,
 a:hover {
   color: #040E4C;
-}
-
-#link_crear_usuario{
-  color: #9edbfa;
-  text-align: center;
-  background-color: black;
 }
 
 
