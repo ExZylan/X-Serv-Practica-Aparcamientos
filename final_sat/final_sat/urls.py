@@ -23,6 +23,8 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^$', 'aparcamientos.views.show_index',),
+    url(r'^xml/$', 'aparcamientos.views.xml_inicio',),
+    url(r'^json/$', 'aparcamientos.views.json_inicio',),
     url(r'^login/$', 'aparcamientos.views.log_in',),
     url(r'^logout/$', 'aparcamientos.views.log_out',),
     url(r'^aparcamientos/$', 'aparcamientos.views.aparcamientos',),
@@ -40,6 +42,7 @@ urlpatterns = [
     url(r'^about/$', 'aparcamientos.views.about',),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^(?P<usuario_pag>\w+)/$', 'aparcamientos.views.pagina_usuario',),
-    url(r'^(?P<usuario_pag>\w+)/xml/$', 'aparcamientos.views.canal_xml',),
+    url(r'^(?P<usuario_pag>\w+)/xml/$', 'aparcamientos.views.xml_usuario',),
+    url(r'^(?P<usuario_pag>\w+)/json/$', 'aparcamientos.views.json_usuario',),
 
 ]

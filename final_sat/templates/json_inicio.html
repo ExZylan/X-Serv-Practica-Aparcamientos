@@ -1,0 +1,36 @@
+{"@context":
+  "@info": "Canal XML de los 5 aparcamientos con más likes",
+  "@graph": [
+          {% for parking in parkings %}
+            { "@id": {{parking.url}},
+              "@type": "http://datos.madrid.es/egob/kos/entidadesYorganismos/AparcamientosResidentes",
+              "id": {{parking.id_entidad}},
+              "title": {{parking.nombre}},
+              "address": {
+                          "district": {{parking.distrito}},
+                          "area": {{parking.barrio}},
+                          "address": {{parking.direccion}}
+                          },
+              "location": { "latitude": {{parking.latitud}}, "longitude": {{parking.longitud}} },
+              "organization": {
+                                "organization-desc": {{parking.descripcion}},
+                                "accesibility": {{parking.accesibilidad}},
+                                "contact": {{parking.contacto}}
+                              },
+              "likes": {{parking.likes}},
+              "num_comments": {{parking.n_comentarios}},
+              {% if parking.n_comentarios > 0 %}
+                  "comments": {
+                                {% for comentario in comentarios %}
+                                    {% if comentario.id_entidad == parking.id_entidad %}
+                                      "autor": {{comentario.autor}},
+                                      "comment": {{comentario.texto}},
+                                      "fecha": {{comentario.fecha}}
+                                    {% endif %}
+                                {% endfor %}
+                              }
+              {% endif %}
+            },
+          {% endfor %}
+    ]
+}

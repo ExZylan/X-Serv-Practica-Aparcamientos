@@ -49,9 +49,9 @@ def show_index(request):
     global accesibilidad_on
     context['accesibilidad_on'] = accesibilidad_on
     if accesibilidad_on:
-        context['parkings'] = Parking.objects.filter(accesibilidad=1)
+        context['parkings'] = Parking.objects.filter(accesibilidad=1).order_by("-likes")[:5]
     else:
-        context['parkings'] = Parking.objects.all()
+        context['parkings'] = Parking.objects.all().order_by("-likes")[:5]
     global error_loading
     context['error_loading'] = error_loading
     context['parkings_loaded'] = (len(parkings) != 0)
@@ -73,7 +73,6 @@ def aparcamientos(request):
     else:
         context['parkings'] = Parking.objects.all()
     return render_to_response('aparcamientos.html', context)
-
 
 
 def filtrar_distrito(request,dist):
@@ -138,6 +137,26 @@ def accesibilidad(request):
     return redirect('/')
 
 
+def xml_inicio(request):
+    context = {}
+    global accesibilidad_on
+    if accesibilidad_on:
+        context['parkings'] = Parking.objects.filter(accesibilidad=1).order_by("-likes")[:5]
+    else:
+        context['parkings'] = Parking.objects.all().order_by("-likes")[:5]
+    return render_to_response('xml_inicio.html', context, content_type='text/xml')
+
+
+def json_inicio(request):
+    context = {}
+    global accesibilidad_on
+    if accesibilidad_on:
+        context['parkings'] = Parking.objects.filter(accesibilidad=1).order_by("-likes")[:5]
+    else:
+        context['parkings'] = Parking.objects.all().order_by("-likes")[:5]
+    return render_to_response('json_inicio.html', context, content_type='text/json')
+
+
 def pagina_usuario(request,usuario_pag):
     context = {}
     context['user'] = request.user
@@ -154,6 +173,32 @@ def pagina_usuario(request,usuario_pag):
         parking = Parking.objects.get(id_entidad=fav.id_entidad)
         context['parkings'].append(parking)
     return render_to_response('usuario.html', context)
+
+
+def xml_usuario(request,usuario_pag):
+    context = {}
+    users_page = user.objects.filter(username=usuario_pag).first()
+    context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
+    favs = Users_Favs.objects.filter(usuario=users_page)
+    context['favoritos'] = favs
+    context['parkings'] = []
+    for fav in favs:
+        parking = Parking.objects.get(id_entidad=fav.id_entidad)
+        context['parkings'].append(parking)
+    return render_to_response('xml_usuario.html', context, content_type='text/xml')
+
+
+def json_usuario(request,usuario_pag):
+    context = {}
+    users_page = user.objects.filter(username=usuario_pag).first()
+    context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
+    favs = Users_Favs.objects.filter(usuario=users_page)
+    context['favoritos'] = favs
+    context['parkings'] = []
+    for fav in favs:
+        parking = Parking.objects.get(id_entidad=fav.id_entidad)
+        context['parkings'].append(parking)
+    return render_to_response('json_usuario.html', context, content_type='text/json')
 
 
 def preferencias(request):
@@ -190,10 +235,6 @@ def cambiar_css(request):
         usuario_pagina.font_size = font_nuevo
         usuario_pagina.save()
     return redirect("/"+request.user.username+"/")
-
-
-def canal_xml(request,usuario_pag):
-    return HttpResponse("Canal XML de "+usuario_pag)
 
 
 @csrf_exempt

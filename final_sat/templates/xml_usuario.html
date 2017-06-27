@@ -1,0 +1,45 @@
+<Contenidos>
+    <infoDataset>
+        <nombre>Aparcamientos para residentes en Madrid - Práctica final SAT </nombre>
+        <descripcion>Canal XML de los favoritos del usuario {{usuario_pagina.usuario}}</descripcion>
+    </infoDataset>
+    {% for parking in parkings %}
+        <contenido>
+              <tipo>EntidadesYOrganismos</tipo>
+              <atributos idioma="es">
+                  <atributo nombre="ID-ENTIDAD">{{parking.id_entidad}}</atributo>
+                  <atributo nombre="NOMBRE">{{parking.nombre}}</atributo>
+                  <atributo nombre="DESCRIPCION">{{parking.descripcion}}</atributo>
+                  <atributo nombre="ACCESIBILIDAD">{{parking.accesibilidad}}</atributo>
+                  <atributo nombre="CONTENT-URL">{{parking.url}}</atributo>
+                  <atributo nombre="LOCALIZACION">
+                      <atributo nombre="DIRECCION">{{parking.direccion}}</atributo>
+                      <atributo nombre="BARRIO">{{parking.barrio}}</atributo>
+                      <atributo nombre="DISTRITO">{{parking.distrito}}</atributo>
+                      <atributo nombre="LATITUD">{{parking.latitud}}</atributo>
+                      <atributo nombre="LONGITUD">{{parking.longitud}}</atributo>
+                  </atributo>
+                  <atributo nombre="DATOSCONTACTOS">{{parking.contacto}}</atributo>
+                  {% for fav in favoritos %}
+                      {% if parking.id_entidad == fav.id_entidad %}
+                          <atributo nombre="FECHA-AGREGADO">{{fav.fecha}}</atributo>
+                      {% endif %}
+                  {% endfor %}
+                  <atributo nombre="LIKES">{{parking.likes}}</atributo>
+                  <atributo nombre="NUM-COMENTARIOS">{{parking.n_comentarios}}</atributo>
+                  {% if parking.n_comentarios > 0 %}
+                    <atributo nombre="COMENTARIOS">
+                        {% for comentario in comentarios %}
+                            {% if comentario.id_entidad == parking.id_entidad %}
+                                <atributo nombre="AUTOR">{{comentario.autor}}</atributo>
+                                <atributo nombre="COMENTARIO">{{comentario.texto}}</atributo>
+                                <atributo nombre="FECHA">{{comentario.fecha}}</atributo>
+                            {% endif %}
+                        {% endfor %}
+                    </atributo>
+                  {% endif %}
+                  <atributo nombre="TIPO">/contenido/entidadesYorganismos/AparcamientosResidentes</atributo>
+              </atributos>
+        </contenido>
+    {% endfor %}
+</Contenidos>
