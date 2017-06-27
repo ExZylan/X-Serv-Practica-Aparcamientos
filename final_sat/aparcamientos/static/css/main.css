@@ -150,6 +150,12 @@ body{
   border-color: black;
 }
 
+
+.btn-comentario{
+  width: 100%;
+  border-color: #17AAA5;
+}
+
 .fa-cog{
   float: right;
   margin-right: 5%;
@@ -177,11 +183,11 @@ a:hover {
   padding-left: 10px;
 }
 #users_list{
-  height: 420px;
+  height: 450px;
   border: 1px solid #040E4C;
   padding: 0px;
 }
-#users_title{
+.users_title{
   height: 38px;
   width: 100%;
   background-color: #17AAA5;
@@ -242,6 +248,7 @@ th, td{
   font-family: 'Signika', sans-serif;
   font-weight: 700;
   font-size: 28px;
+  margin-top: 0px;
 }
 
 #aparcamiento_id{
@@ -254,6 +261,33 @@ th, td{
   border: 1px solid #040E4C;
 }
 
+#nuevo_comentario,
+#comentarios{
+  padding: 50px 0px;
+  padding-right: 25px;
+}
+
+.comentario{
+  padding: 20px 15px;
+}
+
+.comment_info{
+  font-size: 12px;
+}
+
+#titulo_c,
+#texto_c{
+  border-color: #17AAA5;
+}
+
+#texto_c{
+  height: 300px;
+}
+
+
+#info .row{
+  padding: 20px;
+}
 /** CAJA ABOUT **/
 .about_box {
   font-family: 'Salsa', cursive;
@@ -274,7 +308,6 @@ th, td{
 #footer_container{
   border-top: solid 1px #040E4C;
   padding-top: 15px;
-  margin-top: 50%;
   text-align: center;
   font-size: 12px;
 }

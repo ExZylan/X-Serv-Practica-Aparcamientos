@@ -1,0 +1,42 @@
+{"@context":
+  "@info": "Canal XML del usuario {{usuario_pagina.usuario}}",
+  "@graph": [
+          {% for parking in parkings %}
+            { "@id": "{{parking.url}}",
+              "@type": "http://datos.madrid.es/egob/kos/entidadesYorganismos/AparcamientosResidentes",
+              "id": "{{parking.id_entidad}}",
+              "title": "{{parking.nombre}}",
+              "address": {
+                          "district": "{{parking.distrito}}",
+                          "area": "{{parking.barrio}}",
+                          "address": "{{parking.direccion}}"
+                          },
+              "location": { "latitude": "{{parking.latitud}}", "longitude": "{{parking.longitud}}" },
+              "organization": {
+                                "organization-desc": "{{parking.descripcion}}",
+                                "accesibility": "{{parking.accesibilidad}}",
+                                "contact": "{{parking.contacto}}"
+                              },
+              {% for fav in favoritos %}
+                {% if parking.id_entidad == fav.id_entidad %}
+              "adding-date": "{{fav.fecha}}",
+                {% endif %}
+              {% endfor %}
+              "likes": "{{parking.likes}}",
+              "num-comments": "{{parking.n_comentarios}}",
+              {% if parking.n_comentarios > 0 %}
+              "comments": {
+                {% for comentario in comentarios %}
+                  {% if comentario.id_entidad == parking.id_entidad %}
+                          "title": "{{comentario.titulo}}",
+                          "comment": "{{comentario.texto}}",
+                          "author": "{{comentario.autor}}",
+                          "date": "{{comentario.fecha}}"
+                  {% endif %}
+                {% endfor %}
+                          }
+              {% endif %}
+            },
+          {% endfor %}
+    ]
+}

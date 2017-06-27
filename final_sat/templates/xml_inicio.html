@@ -26,8 +26,9 @@
                     <atributo nombre="COMENTARIOS">
                         {% for comentario in comentarios %}
                             {% if comentario.id_entidad == parking.id_entidad %}
-                                <atributo nombre="AUTOR">{{comentario.autor}}</atributo>
+                                <atributo nombre="TITULO">{{comentario.titulo}}</atributo>
                                 <atributo nombre="COMENTARIO">{{comentario.texto}}</atributo>
+                                <atributo nombre="AUTOR">{{comentario.autor}}</atributo>
                                 <atributo nombre="FECHA">{{comentario.fecha}}</atributo>
                             {% endif %}
                         {% endfor %}

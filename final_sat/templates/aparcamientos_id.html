@@ -52,7 +52,6 @@
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 xs-hidden">
       <div id="map">
-
       </div>
     </div>
   </div>
@@ -71,3 +70,33 @@
     });
   </script>
 {% endblock content %}
+
+
+{% block comments %}
+  <div class="row">
+    <div id="comentarios" class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+    <div class="users_title">Comentarios sobre el aparcamiento</div>
+    {% for comentario in comentarios %}
+      <div class="comentario">
+        <h3 class="aparcamiento_id_title">{{comentario.titulo}}</h3>
+        <p class="comment_text">{{comentario.texto}}</p>
+        <p class="comment_info">{{comentario.autor}},&nbsp;&nbsp;&nbsp;&nbsp;{{comentario.fecha}}</p>
+      </div>
+    {% endfor %}
+    </div>
+    <div id="nuevo_comentario" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <div class="users_title">Añadir comentario</div>
+      {% if user.is_authenticated %}
+        <form action="/add_comentario/{{parking.id_entidad}}/" method="POST">
+          {% csrf_token %}
+          Título:</br>
+          <input id="titulo_c" class="form-control" type="text" name="titulo_c" placeholder="Escribe aquí el título" value="">
+          </br>
+          <textarea id="texto_c" class="form-control" type="text" name="texto_c" placeholder="Escribe aquí el comentario" required value=""></textarea>
+          </br>
+          <button class="btn btn-preferences btn-comentario" id="add_comment" type="submit">Publicar</button>
+        </form>
+      {% endif %}
+    </div>
+  </div>
+{% endblock comments %}

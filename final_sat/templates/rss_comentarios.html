@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Comentarios</title>
+    <description>Canal RSS de todos los comentarios de los aparcamientos de la web</description>
+    <lastBuildDate>Mon, 06 Jan 2013 00:01:00 +0000 </lastBuildDate>
+    <pubDate>Mon, 06 Jan 2013 16:20:00 +0000 </pubDate>
+    <ttl>60</ttl> <!--time to live-->
+
+    {% for comentario in comentarios %}
+    <item>
+      <title>{{comentario.titulo}}</title>
+      <description>{{comentario.texto}}</description>
+      <dc:creator>{{comentario.autor}}</dc:creator>
+      <link>/aparcamientos/{{comentario.id_entidad}}</link>
+      <guid>{{comentario.id}}</guid>
+      <pubDate>{{comentario.fecha}}</pubDate>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

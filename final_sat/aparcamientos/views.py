@@ -1,6 +1,6 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
-from .models import Parking, Users_Page, Users_Favs
+from .models import Parking, Users_Page, Users_Favs, Comment
 from operator import itemgetter
 import urllib.request
 from xml.sax import make_parser
@@ -125,7 +125,25 @@ def aparcamientos_id(request,id_parking):
     context['favoritos'] = favs
     context['users_list'] = Users_Page.objects.all()
     context['parking'] = Parking.objects.filter(id_entidad=id_parking).first()
+    context['comentarios'] = Comment.objects.filter(id_entidad=id_parking)
     return render_to_response('aparcamientos_id.html', context)
+
+
+@csrf_exempt
+def comentarios_add(request,id_parking):
+    if request.method == 'POST':
+        titulo_c = request.POST['titulo_c']
+        if titulo_c == "":
+            titulo = "Sin título"
+        texto_c = request.POST['texto_c']
+
+        Comment.objects.create(
+            id_entidad = id_parking,
+            titulo = titulo_c,
+            texto = texto_c,
+            autor = request.user,
+        )
+    return redirect("/aparcamientos/"+id_parking)
 
 
 def accesibilidad(request):
@@ -144,6 +162,7 @@ def xml_inicio(request):
         context['parkings'] = Parking.objects.filter(accesibilidad=1).order_by("-likes")[:5]
     else:
         context['parkings'] = Parking.objects.all().order_by("-likes")[:5]
+    context['comentarios'] = Comment.objects.all()
     return render_to_response('xml_inicio.html', context, content_type='text/xml')
 
 
@@ -154,7 +173,14 @@ def json_inicio(request):
         context['parkings'] = Parking.objects.filter(accesibilidad=1).order_by("-likes")[:5]
     else:
         context['parkings'] = Parking.objects.all().order_by("-likes")[:5]
+    context['comentarios'] = Comment.objects.all()
     return render_to_response('json_inicio.html', context, content_type='text/json')
+
+
+def rss_comentarios(request):
+    context = {}
+    context['comentarios'] = Comment.objects.all()
+    return render_to_response('rss_comentarios.html', context, content_type='text/rss')
 
 
 def pagina_usuario(request,usuario_pag):
@@ -185,6 +211,7 @@ def xml_usuario(request,usuario_pag):
     for fav in favs:
         parking = Parking.objects.get(id_entidad=fav.id_entidad)
         context['parkings'].append(parking)
+    context['comentarios'] = Comment.objects.all()
     return render_to_response('xml_usuario.html', context, content_type='text/xml')
 
 
@@ -198,6 +225,7 @@ def json_usuario(request,usuario_pag):
     for fav in favs:
         parking = Parking.objects.get(id_entidad=fav.id_entidad)
         context['parkings'].append(parking)
+    context['comentarios'] = Comment.objects.all()
     return render_to_response('json_usuario.html', context, content_type='text/json')
 
 

@@ -34,3 +34,11 @@ class Users_Favs(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     id_entidad = models.IntegerField()
     fecha = models.DateTimeField(default = timezone.now())
+
+
+class Comment(models.Model):
+    id_entidad = models.IntegerField()
+    titulo = models.TextField(max_length=256, default="Sin título")
+    texto = models.TextField(max_length=256)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    fecha = models.DateTimeField(default = timezone.now())

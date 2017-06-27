@@ -111,70 +111,80 @@
 
 
     <section id="info">
-      <div id="users_list" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <div id="users_title">Usuarios registrados</div>
-        {% for usuario_pagina in users_list %}
-          <div class="user_page"><a href="/{{usuario_pagina.usuario}}/">
-            <section>{{usuario_pagina.usuario}}</section>
-            <section>{{usuario_pagina.titulo}}</section>
-          </a></div>
-        {% endfor %}
+      <div class="row">
+        <div id="users_list" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+          <div class="users_title">Usuarios registrados</div>
+          {% for usuario_pagina in users_list %}
+            <div class="user_page"><a href="/{{usuario_pagina.usuario}}/">
+              <section>{{usuario_pagina.usuario}}</section>
+              <section>{{usuario_pagina.titulo}}</section>
+            </a></div>
+          {% endfor %}
+        </div>
+
+
+        <main id="main_content" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+          {% block content %}
+            {% if parkings_loaded %}
+              {% if accesibilidad_on %}
+                <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver lista completa de aparcamientos</a>&nbsp;&nbsp;
+              {% else %}
+                <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver sólo aparcamientos accesibles</a>&nbsp;&nbsp;
+              {% endif %}
+            {% else %}
+              {% if error_loading %}
+                <div class="alert alert-danger">
+                  <strong>Error:</strong> Para cargar los aparcamientos debes estar registrado.
+                </div>
+              {% endif %}
+              <a type="button" class="btn btn-accesible" href="/cargar_aparcamientos/">Cargar listado de aparcamientos</a>
+            {% endif %}
+
+            <h2 class="titulo_usuario">Aparcamientos con más likes:</h2>
+            <div class="parkings_chart">
+              <table id="tabla_likes" class="tabla_todos table table-responsive">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Barrio</th>
+                    <th>Distrito</th>
+                    <th>Comentarios</th>
+                    <th>Likes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for parking in parkings %}
+                    <tr class="odd gradeX">
+                      <td><a href="{{parking.url}}">{{parking.nombre}}</a></td>
+                      <td>{{parking.direccion}}</td>
+                      <td>{{parking.barrio}}</td>
+                      <td>{{parking.distrito}}</td>
+                      <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
+                      <td>
+                        {{parking.likes}}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="btn-group">
+              <a type="button" class="btn btn-canales" href="/xml/"> Canal XML de inicio</a>
+              <a type="button" class="btn btn-canales" href="/json/"> Canal JSON de inicio</a>
+            </div>
+          {% endblock content %}
+        </main>
       </div>
 
+      {% block comments %}
+      {% endblock comments %}
 
-      <main id="main_content" class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-        {% block content %}
-          {% if parkings_loaded %}
-            {% if accesibilidad_on %}
-              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver lista completa de aparcamientos</a>&nbsp;&nbsp;
-            {% else %}
-              <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver sólo aparcamientos accesibles</a>&nbsp;&nbsp;
-            {% endif %}
-          {% else %}
-            {% if error_loading %}
-              <div class="alert alert-danger">
-                <strong>Error:</strong> Para cargar los aparcamientos debes estar registrado.
-              </div>
-            {% endif %}
-            <a type="button" class="btn btn-accesible" href="/cargar_aparcamientos/">Cargar listado de aparcamientos</a>
-          {% endif %}
-
-          <h2 class="titulo_usuario">Aparcamientos con más likes:</h2>
-          <div class="parkings_chart">
-            <table id="tabla_likes" class="tabla_todos table table-responsive">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Direccion</th>
-                  <th>Barrio</th>
-                  <th>Distrito</th>
-                  <th>Comentarios</th>
-                  <th>Likes</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for parking in parkings %}
-                  <tr class="odd gradeX">
-                    <td><a href="{{parking.url}}">{{parking.nombre}}</a></td>
-                    <td>{{parking.direccion}}</td>
-                    <td>{{parking.barrio}}</td>
-                    <td>{{parking.distrito}}</td>
-                    <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
-                    <td>
-                      {{parking.likes}}
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
-          <div class="btn-group">
-            <a type="button" class="btn btn-canales" href="/xml/"> Canal XML de inicio</a>
-            <a type="button" class="btn btn-canales" href="/json/"> Canal JSON de inicio</a>
-          </div>
-        {% endblock content %}
-      </main>
     </section>
+
+
+
+
 
 	  <footer id="footer">
       <div class="container" id="footer_container">
