@@ -136,13 +136,15 @@ def comentarios_add(request,id_parking):
         if titulo_c == "":
             titulo = "Sin título"
         texto_c = request.POST['texto_c']
-
         Comment.objects.create(
             id_entidad = id_parking,
             titulo = titulo_c,
             texto = texto_c,
             autor = request.user,
         )
+        parking = Parking.objects.get(id_entidad=id_parking)
+        parking.likes += 1
+        parking.save()
     return redirect("/aparcamientos/"+id_parking)
 
 
@@ -188,6 +190,10 @@ def pagina_usuario(request,usuario_pag):
     context['user'] = request.user
     users_css = user.objects.filter(username=request.user.username).first()
     context['usuario_css'] = Users_Page.objects.filter(usuario=users_css).first()
+    users_page = user.objects.filter(username=usuario_pag).first()
+    users_pag = Users_Page.objects.get(usuario=users_page)
+    users_pag.n_visitas += 1
+    users_pag.save()
     users_page = user.objects.filter(username=usuario_pag).first()
     context['usuario_pagina'] = Users_Page.objects.filter(usuario=users_page).first()
     context['pagina_propia'] = str(request.user.username) == str(Users_Page.objects.filter(usuario=users_page).first().usuario)

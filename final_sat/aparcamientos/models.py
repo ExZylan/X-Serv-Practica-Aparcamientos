@@ -28,6 +28,7 @@ class Users_Page(models.Model):
     color = models.CharField(max_length=256, default="#040E4C")
     background = models.CharField(max_length=256, default="#8FE7D5")
     font_size = models.IntegerField(default=15)
+    n_visitas = models.IntegerField(default=0)
 
 
 class Users_Favs(models.Model):

@@ -72,5 +72,10 @@
       <a type="button" class="btn btn-canales" href="/{{usuario_pagina.usuario}}/json/"> Canal JSON de {{usuario_pagina.usuario}}</a>
     </div>
   </div>
-
 {% endblock content %}
+
+{% block contador_visitas %}
+  <div id="contador_usuario">
+    {{usuario_pagina.n_visitas}}
+  </div>
+{% endblock contador_visitas %}
