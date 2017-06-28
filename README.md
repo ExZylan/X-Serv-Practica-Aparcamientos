@@ -14,7 +14,7 @@ El cambio de CSS de un usuario consta de:
   - Color de fondo
   - Tamaño de letra
 
-#### Vídeo demostrativo de la funcionalidad básica:
+#### Vídeo demostrativo de la funcionalidad básica: [ver en YouTube](https://www.youtube.com/watch?v=OChga50oSBk)
 
 
 ## Parte opcional:
@@ -32,4 +32,4 @@ El cambio de CSS de un usuario consta de:
 12. Contador de visitas para cada página de usuario (guardado en modelos de DJANGO)
 13. Contador de visitas para la página de inicio (con contador de visitas gratuito on-line)
 
-#### Vídeo demostrativo de la funcionalidad optativa:
+#### Vídeo demostrativo de la funcionalidad optativa: [ver en YouTube](https://www.youtube.com/watch?v=4Wan_U1oDkU&feature=youtu.be)
