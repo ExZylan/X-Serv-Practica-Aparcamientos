@@ -80,7 +80,7 @@
     {% for comentario in comentarios %}
       <div class="comentario">
         <h3 class="aparcamiento_id_title">{{comentario.titulo}}</h3>
-        <p class="comment_text">{{comentario.texto}}</p>
+        <div class="comment_text">{{comentario.texto}}</div>
         <p class="comment_info">{{comentario.autor}},&nbsp;&nbsp;&nbsp;&nbsp;{{comentario.fecha}}</p>
       </div>
     {% endfor %}

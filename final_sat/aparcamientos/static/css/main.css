@@ -273,6 +273,11 @@ th, td{
   padding: 20px 15px;
 }
 
+.comment_text{
+  width: 790px;
+  overflow: auto;
+}
+
 .comment_info{
   font-size: 12px;
 }
