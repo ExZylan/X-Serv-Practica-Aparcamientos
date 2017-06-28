@@ -134,7 +134,7 @@ def comentarios_add(request,id_parking):
     if request.method == 'POST':
         titulo_c = request.POST['titulo_c']
         if titulo_c == "":
-            titulo = "Sin título"
+            titulo_c = "Sin título"
         texto_c = request.POST['texto_c']
         Comment.objects.create(
             id_entidad = id_parking,
@@ -143,7 +143,7 @@ def comentarios_add(request,id_parking):
             autor = request.user,
         )
         parking = Parking.objects.get(id_entidad=id_parking)
-        parking.likes += 1
+        parking.n_comentarios += 1
         parking.save()
     return redirect("/aparcamientos/"+id_parking)
 
