@@ -1,5 +1,5 @@
 # X-Serv-Practica-Aparcamientos
-Repositorio de inicio de la práctica final - Curso 2016/2017
+Repositorio de la práctica final - Curso 2016/2017
 
 ## Nerea Del Olmo Sanz - Grado en Ingeniería en Tecnologías de la Telecomunicación
 usuario de laboratorios: nereados
@@ -12,7 +12,7 @@ El cambio de CSS de un usuario consta de:
   - Color de fondo
   - Tamaño de letra
 
-  ### Vídeo:
+  #### Vídeo demostrativo de la funcionalidad básica:
 
 ## Parte opcional:
 1. Inclusión de favicon del sitio.
@@ -27,4 +27,4 @@ El cambio de CSS de un usuario consta de:
 10. Uso de elementos HTML5: section, main, header, form (input types: color, number; attributes: placeholder, required), footer...
 11. Localización de cada aparcamiento en un mapa con Leaflet.
 
-  ### Vídeo:
+  #### Vídeo demostrativo de la funcionalidad optativa:
