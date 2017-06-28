@@ -295,15 +295,45 @@ th, td{
   font-family: 'Salsa', cursive;
   font-size: 18px;
   font-weight: 100;
-  text-align: center;
-  background: #eaecd3;
   margin: 0 0 25px;
-  overflow: hidden;
-  padding: 20px;
-  border-radius: 35px 0px 35px 0px;
-  -moz-border-radius: 35px 0px 35px 0px;
-  border: 1px solid #040E4C;
+  height: 450px;
+  padding: 5px 20px;
+  text-align: justify;
 }
+
+
+.panel-body{
+  border: 1px solid #040E4C;
+  height: 327px;
+  background-color: #ccf8f0;
+}
+.nav-tabs{
+  border-bottom: 1px solid #040E4C;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+  color: #040E4C;
+  cursor: default;
+  background-color: #ccf8f0;
+  border: 1px solid #040E4C;
+      border-bottom-color: rgb(248, 241, 12);
+  border-bottom-color: transparent;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+  color: #DFA85E;
+  background-color: #ccf8f0;
+}
+.nav-tabs > li > a:hover {
+  border-color: #040E4C;
+}
+
+.nav-tabs > li > a{
+  color: #17AAA5;
+}
+
+
+
 /** FIN CAJA ABOUT **/
 
 

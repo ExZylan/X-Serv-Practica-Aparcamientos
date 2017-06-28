@@ -16,6 +16,51 @@
 
 {% block content %}
   <div class="about_box">
-    <h4>Práctica final de la asignatura de Servicios y Aplicaciones Telemáticas</h4>
+    <h3>Práctica final de la asignatura de Servicios y Aplicaciones Telemáticas</h3>
+    <p>En esta página podemos ver y gestionar todos los aparcamientos para residentes de la ciudad de Madrid, obtenidos mediante un archivo en formato XML proporcionado por su Ayuntamiento. La página consta de las siguientes secciones principales:</p>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <!-- TABS NAMES -->
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#inicio" data-toggle="tab">Inicio</a></li>
+            <li><a href="#todos" data-toggle="tab">Todos</a></li>
+            <li><a href="#paginas" data-toggle="tab">Páginas personales</a></li>
+            <li><a href="#usuarios" data-toggle="tab">Acceso para usuarios</a></li>
+        </ul>
+        <!-- CONTENT -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="inicio">
+            <br>Muestra los cinco aparcamientos con más <i>likes</i> del listado.
+            <ul>
+              <li>Un botón permite visualizar únicamente los aparcamientos accesibles en todos los listados (o volver a visualizar el listado completo).</li>
+              <li>Mediante los botones correspondientes se pueden generar archivos en formato XML o JSON con la información de los aparcamientos de dicha sección.</li>
+            </ul>
+          </div>
+          <div class="tab-pane" id="todos">
+            <br>Muestra el listado completo de aparcamientos en una tabla, de cinco en cinco instalaciones por página.
+            <ul>
+              <li>Cada instalación tiene un enlace a su página de información. En ella, se localiza el aparcamiento en un mapa y se muestra el listado de comentarios de dicho aparcamiento, ya que los usuarios <i>loggeados</i> pueden añadir comentarios sobre cada instalación.</li>
+              <li>Cualquier visitante (registrado o no) puede añadir <i>likes</i> a cualquier aparcamiento.</li>
+              <li>Los usuarios registrados y <i>loggeados</i> pueden añadir instalaciones a su página personal de favoritos.</li>
+              <li>Existe un botón que genera un canal RSS con todos los comentarios publicados hasta el momento.</li>
+            </ul>
+          </div>
+          <div class="tab-pane" id="paginas">
+            <br>A la derecha de todas las secciones, se muestra un listado de los usuarios registrados en la aplicación.
+            <ul>
+              <li>Pinchando en cada uno de ellos se accede a la página de favoritos de ese usuario, en la que se muestran de cinco en cinco.</li>
+              <li>En todas las páginas personales hay dos botones para generar documentos en formato XML o JSON de los favoritos del usuario seleccionado.</li>
+              <li>Los usuarios <i>loggeados</i> tiene un botón extra en su propia página personal, para acceder a la sección de preferencias en la que se puede:<br>
+                  - modificar el estilo de toda la página web, el cual será privado exclusivamente para ese usuario y</br>
+                  - cambiar el título de la página personal, lo cual será público para todos los usuarios y visitantes.</li>
+            </ul>
+          </div>
+          <div class="tab-pane" id="usuarios">
+            <br>En la parte superior derecha de la cabecera, se encuentra el formulario para acceder a la sesión de un usuario previamente registrado. Si por el contrario aún no es un usuario registrado, se puede crear uno nuevo pinchando en el enlace bajo el formulario.
+          </div>
+        </div><!--/.CONTENT-->
+      </div><!--/.panel-body-->
+    </div><!--/.panel-->
+
   </div>
 {% endblock content %}
