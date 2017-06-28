@@ -126,6 +126,39 @@
               {% else %}
                 <a type="button" class="btn btn-accesible" href="/accesibilidad/">Ver sólo aparcamientos accesibles</a>&nbsp;&nbsp;
               {% endif %}
+              <h2 class="titulo_usuario">Aparcamientos con más likes:</h2>
+              <div class="parkings_chart">
+                <table id="tabla_likes" class="tabla_todos table table-responsive">
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Direccion</th>
+                      <th>Barrio</th>
+                      <th>Distrito</th>
+                      <th>Comentarios</th>
+                      <th>Likes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for parking in parkings %}
+                      <tr class="odd gradeX">
+                        <td><a href="{{parking.url}}">{{parking.nombre}}</a></td>
+                        <td>{{parking.direccion}}</td>
+                        <td>{{parking.barrio}}</td>
+                        <td>{{parking.distrito}}</td>
+                        <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
+                        <td>
+                          {{parking.likes}}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="btn-group">
+                <a type="button" class="btn btn-canales" href="/xml/"> Canal XML de inicio</a>
+                <a type="button" class="btn btn-canales" href="/json/"> Canal JSON de inicio</a>
+              </div>
             {% else %}
               {% if error_loading %}
                 <div class="alert alert-danger">
@@ -134,40 +167,6 @@
               {% endif %}
               <a type="button" class="btn btn-accesible" href="/cargar_aparcamientos/">Cargar listado de aparcamientos</a>
             {% endif %}
-
-            <h2 class="titulo_usuario">Aparcamientos con más likes:</h2>
-            <div class="parkings_chart">
-              <table id="tabla_likes" class="tabla_todos table table-responsive">
-                <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Direccion</th>
-                    <th>Barrio</th>
-                    <th>Distrito</th>
-                    <th>Comentarios</th>
-                    <th>Likes</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for parking in parkings %}
-                    <tr class="odd gradeX">
-                      <td><a href="{{parking.url}}">{{parking.nombre}}</a></td>
-                      <td>{{parking.direccion}}</td>
-                      <td>{{parking.barrio}}</td>
-                      <td>{{parking.distrito}}</td>
-                      <td><a href="/aparcamientos/{{parking.id_entidad}}/"> + Info</a></td>
-                      <td>
-                        {{parking.likes}}
-                      </td>
-                    </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-            <div class="btn-group">
-              <a type="button" class="btn btn-canales" href="/xml/"> Canal XML de inicio</a>
-              <a type="button" class="btn btn-canales" href="/json/"> Canal JSON de inicio</a>
-            </div>
           {% endblock content %}
         </main>
       </div>
